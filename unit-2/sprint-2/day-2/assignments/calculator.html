@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+    <style>
+        #main{
+            height: auto;
+            width: 80%;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+           margin-bottom: 100px; margin-left: 100px;margin-top: 100px;margin-right: 100px;
+           padding-left: 50px;padding-top: 50px;padding-bottom: 50px;padding-right: 50px;
+        }
+        .bar{
+            height: 90px;
+            width: 80%;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            margin: auto;
+            
+        }.child{
+            height: auto;
+            width: 80%;
+            text-align: center;
+            display: flex;
+            justify-content: space-evenly;
+            margin: auto;
+            padding-left: 15px;padding-top: 15px;padding-bottom: 15px;padding-right: 15px;
+
+        }
+        
+        .child>div{
+            height:100%;
+            width: 100%;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            margin-right: 5px;
+            color: black;
+            font-size: 50px;
+            padding-left: 15px;padding-top: 15px;padding-bottom: 15px;padding-right: 15px;  
+
+
+        }.b{
+            height: auto;
+            width: 80%;
+            text-align: center;
+            display: flex;
+            justify-content: space-evenly;
+            margin: auto;
+            padding-left: 15px;padding-top: 15px;padding-bottom: 15px;padding-right: 15px;
+        }.b>div{
+            height:100%;
+            width: 80%;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            padding-left: 15px;padding-top: 15px;padding-bottom: 15px;padding-right: 15px;
+            color: black;
+            font-size: 50px;
+            margin-right: 5px;
+        }.c{
+            height: auto;
+            width: 80%;
+            text-align: center;
+            display: flex;
+            justify-content: space-evenly;
+            margin: auto;
+            padding-left: 15px;padding-top: 15px;padding-bottom: 15px;padding-right: 15px;
+        }.c>div{
+            height:100%;
+            width: 80%;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            padding-left: 15px;padding-top: 15px;padding-bottom: 15px;padding-right: 15px;
+            color: black;
+            font-size: 50px;
+            margin-right: 5px;
+        }.d{
+            height: auto;
+            width: 80%;
+            text-align: center;
+            display: flex;
+            justify-content: space-around;
+            margin: auto;
+            padding-left: 15px;padding-top: 15px;padding-bottom: 15px;padding-right: 15px;
+        }.d>div{
+            height:100%;
+            width: 80%;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            padding-left: 15px;padding-top: 15px;padding-bottom: 15px;padding-right: 15px; 
+            color: black;
+            font-size: 50px;
+            margin-right: 5px;
+           
+        }.d>div:nth-child(1){
+            background-color: red;
+            color: white;
+        }.d>div:nth-child(3){
+            background-color: black;
+            color: white;
+        }
+         .child>div:nth-child(4){
+            background-color: black;
+            color: white;
+
+        }
+         .b>div:nth-child(4){
+            background-color: black;
+            color: white;
+        }
+        .d>div:nth-child(4){
+             background-color: black;
+            color: white;
+        }.c>div:nth-child(4){
+             background-color: black;
+            color: white;
+        }
+
+        
+
+
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div class="bar"></div>
+        <div class="child">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>+</div>
+        </div>
+        <div class="b">
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+            <div>-</div>
+        </div>
+        <div class="c">
+            <div>7</div>
+            <div>8</div>
+            <div>9</div>
+            <div>x</div>
+        </div>
+        <div class="d">
+            <div>c</div>
+            <div>0</div>
+            <div>=</div>
+            <div>/</div>
+        </div>
+    </div>
+</body>
+</html>
