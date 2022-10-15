@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Queries</title>
+    <style>            
+        .parent{
+            display: grid;
+            grid-template-columns: repeat(300px,300px);
+            column-gap: 20px;
+            row-gap: 10px;
+            grid-template-areas: "yell yell"
+                                "re     grn";
+           font-size: 50px;
+           grid-template-rows: 100px 400px;
+
+        }.parent>div:nth-child(1){
+
+            background-color: yellow;
+            grid-area: yell;
+            padding: 20px;
+        }
+        .parent>div:nth-child(2){
+            background-color: red;
+            grid-area: re;
+            
+        }.parent>div:nth-child(3){
+            background-color:green;
+            grid-area: grn;
+        }
+        @media all and (min-width:300px) and (max-width:600px) {
+            .parent{
+                display: grid;
+                grid-template-areas: "yell"
+                                       "re"
+                                       "grn"; 
+                grid-template-rows: 100px 200px 200px;
+                                         
+            }
+            
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div>Navigation</div>
+        <div>LEFT BOX</div>
+        <div>RIGHT BOX</div>
+    </div>
+</body>
+</html>
