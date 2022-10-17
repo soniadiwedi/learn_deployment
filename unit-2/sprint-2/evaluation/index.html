@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web-111 C1 Evaluation</title>
+
+  <style>
+    body {
+      background-color: rgb(250, 250, 250);
+    }
+    .container{
+      text-align: center;
+    }
+    .container>div{
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      
+    }.top>div:nth-child(2){
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      grid-template-rows: repeat(3,1fr);
+      
+    }.top>div>div>img{
+      width: 20%;
+    }.top>div>button{
+      background-color: green;
+      color: white;
+   
+    }h3{
+      text-align: center;
+    }
+    
+    .mid>div>img{
+      display: flex;
+      justify-content: space-evenly;
+      margin: auto;
+      
+
+    }.mid>div>img{
+      width: 50%;
+     
+    }.bottom>div{
+    display: grid;
+    grid-template-columns:repeat (3,1fr);
+    grid-template-rows: repeat(2,1fr);
+    grid-template-areas : "one two three "
+                          "four five six";
+    column-gap: 150px;
+    
+    }.bottom>div>div:nth-child(1){
+      grid-area: one;
+    }.bottom>div>div:nth-child(2){
+      grid-area: two;
+    }.bottom>div>div:nth-child(3){
+      grid-area: three;
+    }.bottom>div>div:nth-child(4){
+      grid-area: four;
+    }.bottom>div>div:nth-child(5){
+      grid-area: five;
+    }.bottom>div>div:nth-child(6){
+      grid-area: six;
+    }button{
+      background-color: green;
+      align-items: center;
+      color: white;
+    }.info>div{
+      display: flex;
+      justify-content: right;
+      background-color: aquamarine;
+      align-items: center;
+      gap: 50px;
+    }.info>div>div>img{
+      width: 50%;
+    }.info>div>div>button{
+      background-color:white;
+      color: green;
+      padding: 5px;
+    }
+
+    @media screen and (min-width:701px) and (max-width:1000px) {
+      /* Here Write all the necessery styles for Medium Screen size  */
+      .mid{
+        flex-direction: row;
+      }.bottom>div:nth-child(2){
+        grid-template-columns: repeat(2,1fr);
+      }
+     
+    }
+
+    @media screen and (min-width:100px) and (max-width:700px) {
+      /* Here Write all the necessery styles for Small Screen size  */
+      .top>div{
+
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="top">
+      <!-- This is the top part. Here should be 2 divs(flex) and inside the second div there should be 6 more divs(Grid) -->
+      <div><h1>Invest in IPOs</h1>
+            <p> <b>Trusted by Millions os Indians.Start Investing Today </b> </p>
+              <button>GET STARTED</button></div>
+      <div>
+        <div>
+          <img src="data:image/png;base64,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" alt="">
+          <h5>Mutual Funds</h5>
+        </div>
+        <div>
+          <img src="data:image/png;base64,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" alt="">
+          <h5>Stocks</h5>
+        </div>
+        <div>
+          <img src="data:image/png;base64,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" alt="">
+          <h5>Futures & Options</h5>
+        </div>
+        <div>
+          <img src="data:image/png;base64,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" alt="">
+          <h5>US Stocks</h5>
+        </div>
+        <div>
+          <img src="data:image/png;base64,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" alt="">
+          <h5>IPO's</h5>
+        </div>
+        <div>
+          <img src="data:image/png;base64,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" alt="">
+          <h5>Fixed Deposits</h5>
+        </div>
+      </div>
+    </div>
+    <h2>Keep learning.Keep growing.</h2>
+    <div class="mid">
+      <!-- This is the mid part. Here you should have div where there will be 3 more divs(flex)  -->
+      
+      <div>
+        <img src="https://assets-netstorage.groww.in/web-assets/billion_groww_desktop/prod/build/client/images/blog1.d3a78143.png" alt="">
+        <h5>How to select/Pick Stocks for Intraday</h5>
+      </div>
+      <div>
+        <img src="https://assets-netstorage.groww.in/web-assets/billion_groww_desktop/prod/build/client/images/blog1.d3a78143.png" alt="">
+        <h5>Begainers Guide to Mutual Funds</h5>
+      </div>
+      <div>
+        <img src="https://assets-netstorage.groww.in/web-assets/billion_groww_desktop/prod/build/client/images/blog1.d3a78143.png" alt="">
+        <h5>How to Diversify in the of Market Volatility</h5>
+      </div>
+    
+    </div>
+    <h2>Discover Mutual Funds   </h2>
+    <div class="bottom">
+      <!-- This is the bottom part. Here you should have div where there will be 6 more divs(Grid)  -->
+      <div>
+        <div>
+          <img src="https://storage.googleapis.com/groww-assets/mf-assets/web/collection/light/high_returns.svg" alt="">
+          <p>Heigh Return</p>
+        </div>
+        <div>
+          <img src="https://storage.googleapis.com/groww-assets/mf-assets/web/collection/light/high_returns.svg" alt="">
+          <p>Heigh Return</p>
+        </div>
+        <div>
+          <img src="https://storage.googleapis.com/groww-assets/mf-assets/web/collection/light/high_returns.svg" alt="">
+          <p>Heigh Return</p>
+        </div>
+        <div>
+          <img src="https://storage.googleapis.com/groww-assets/mf-assets/web/collection/light/high_returns.svg" alt="">
+          <p>Heigh Return</p>
+        </div>
+        <div>
+          <img src="https://storage.googleapis.com/groww-assets/mf-assets/web/collection/light/high_returns.svg" alt="">
+          <p>Heigh Return</p>
+        </div>
+        <div>
+          <img src="https://storage.googleapis.com/groww-assets/mf-assets/web/collection/light/high_returns.svg" alt="">
+          <p>Heigh Return</p>
+        </div>
+     
+        
+      </div>
+    </div>
+    <button>Explore all Mutual Funds</button> 
+    <br>
+    <br>
+    <div class="info">
+      <!-- Here we should have a image and a div  -->
+      <div>
+        <div>
+          <h1>We are with you at every step</h1>
+          <p>For any query you have,find the answer quickly on our help & Support.Need a little bit More help?</p>
+          <button>Get In Touch </button>
+        </div>
+        <div>
+          <img src="https://assets-netstorage.groww.in/web-assets/billion_groww_desktop/prod/build/client/images/mfSupportImg.0379d5a2.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
