@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #main{
+            display: grid;
+            grid-template-columns: repeat(9,1fr);
+            grid-template-rows: 100px;
+            gap: 20px;
+            
+            font-size: 20px;
+            
+         
+           
+        }#main>div{
+            padding-top: 35px;padding-left: 35px;padding-right: 10px;padding-bottom: 10px;
+            border-radius: 10px;
+        }
+        
+        #main>div:nth-child(1){
+            background-color:blue ;
+            color: white;
+            
+        }#main>div:nth-child(2){
+            background-color: grey;
+            color: white;
+        }#main>div:nth-child(3){
+            background-color: aquamarine;
+            color: white;
+        }#main>div:nth-child(4){
+            background-color: red; 
+            color: white;
+        }#main>div:nth-child(5){
+            background-color: yellow; 
+        }#main>div:nth-child(6){
+            background-color:skyblue; 
+            color: white;
+        }#main>div:nth-child(7){
+            background-color: white; 
+            color: black;
+        }#main>div:nth-child(8){
+            background-color: rgb(55, 22, 22); 
+            color: white;
+        }#main>div:nth-child(9){
+            background-color: white;
+            color: blue; 
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div>Primary</div>
+        <div>Secondary</div>
+        <div>Seccess</div>
+        <div>Danger</div>
+        <div>Warning</div>
+        <div>Info</div>
+        <div>Light</div>
+        <div>Dark</div>
+        <div>Link</div>
+    </div>
+    
+</body>
+</html>
