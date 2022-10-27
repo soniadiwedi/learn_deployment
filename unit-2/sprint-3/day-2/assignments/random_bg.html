@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    window.addEventListener("resize",mycal);
+    function mycal(){
+        let colors=color();
+        document.querySelector("body").style.backgroundColor=colors
+    }
+     function color(){
+        let str="123456789abcdef"
+        let str1="#"
+        for(let i=0;i<6;i++){
+            str1+=str[Math.floor(Math.random()*16)];
+        }
+        console.log(str1)
+        return str1
+     }
+</script>
