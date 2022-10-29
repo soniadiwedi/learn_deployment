@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 20%;
+        }#btndislike{
+            width: 10%;
+            display: flex;
+            justify-content: center;
+        }#btnlike{
+            width: 10%;
+            display: flex;
+            justify-content: center;
+        }div{
+            display: flex;
+            gap: 5px;
+        }#div{
+            display: flex;
+            gap: 150px;  
+        }
+
+    </style>
+</head>
+<body>
+    <img src="https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8cHVwcHl8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt=""
+    id="image">
+   <div><button id="btnlike">Like <img src="https://images.emojiterra.com/google/android-nougat/512px/1f44d.png" alt=""></button>
+    <button id="btndislike">Dislike <img src="http://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/thumbs-down.png" alt=""></button>
+</div> 
+<div id="div">
+<p id="like"></p>
+<p id="dislike"></p>
+</div>
+</body>
+</html>
+<script>
+    let btn1=document.querySelector("#btnlike").addEventListener("click",likefuc);
+    let count1=localStorage.getItem("Like")||0;
+    document.querySelector("#like").innerText=count1;
+
+    let btn2=document.querySelector("#btndislike").addEventListener("click",dislikefuc);
+    let count2=localStorage.getItem("dislike")||0;
+     count2=document.querySelector("#dislike").innerText=count2
+
+
+    
+    function likefuc(){
+        count1++
+        document.querySelector("#like").innerText=count1;
+        localStorage.setItem("Like",count1);
+    }
+
+    function dislikefuc(){
+        count2++
+        document.querySelector("#dislike").innerText=count2
+        localStorage.setItem("Dislike",count2)
+    }
+
+</script>
