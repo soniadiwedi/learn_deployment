@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        img{
+           display: block;
+           margin-left: auto;
+           margin-right: auto; 
+            
+        } body{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+
+        } .SignUp{
+            width: 360px;
+            height: 620px;
+            margin: auto;
+            border-radius: 3px;
+        } form{
+            width: 300px;
+            margin-left: 20px;
+
+
+        }form label{
+            display: flex;
+            margin-top: 20px;
+            font-size: 15px;
+
+        } form input{
+            width: 100%;
+            padding: 8px;
+            border: 1px solid grey;
+            border-radius: 5px;
+            outline: none;
+        }input[type="submit"]{
+            width: 320px;
+            height: 35;
+            margin-top: 20px;
+            border: none;
+            background-color: rgb(131, 90, 168);
+            color: white;
+        }P{
+            text-align: center;
+            padding-top: 20px ;
+
+        }.para1{
+            margin-top: 10px;
+        }h2{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://sso.masaischool.com/brand_dark.svg" alt="">
+    <div class="SignUp">
+        <h2>Sign Up</h2>
+        <form >
+            <label for="">Full Name</label>
+            <input type="text" id="name"  placeholder="Enter your full name">
+            <label for="">Email</label>
+            <input type="email" id="email" placeholder="Enter email">
+            <label for="">Password</label>
+            <input type="password" id="password" placeholder="Enter Password">
+            <input type="submit" value="SIGN UP" >
+        </form>
+        <p>By signing up ,I accept the Masai School <a href="#">Terms of service</a>  and acknowledge the <br>
+        <a href="#">privacy policy</a> </p>
+        <p class="para1">Already have an account? <a href="./signIn.html">Sign In</a> </p>
+    </div>
+    
+</body>
+<script>
+    let data= JSON.parse(localStorage.getItem("signUp"))||[];
+    document.querySelector("form").addEventListener("submit",(e)=>{
+        e.preventDefault();
+        let name= document.getElementById("name").value;
+        let email= document.getElementById("email").value;
+        let password= document.getElementById("password").value;
+        let obj={name,email,password};
+        data.push(obj);
+        localStorage.setItem("signUp",JSON.stringify(data));
+        // window.location.href="./signIn.html";
+    });
+</script>
+</html>
