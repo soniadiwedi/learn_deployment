@@ -1,4 +1,4 @@
-// All the Code for All Students Page Goes Here
+    // All the Code for All Students Page Goes Here
 //1.get data from local storage.
 // 2.catch the table from html page.
 // 3.append data to table.
@@ -15,6 +15,7 @@ let tbody=document.querySelector("tbody");
 let filter=document.getElementById("filter");
 
 function displayTable(data){
+    tbody.innerHTML=null;
     
     data.forEach(function(element,index){
         let tr=document.createElement("tr");
@@ -60,7 +61,7 @@ function addData(key,value){//function creating for display data admission accep
 }
 //data is from where i want to remove the values/student details.
 //index is the index of the student details
-function deleteData(data,index){//function for deleting data after accepting or rejection.To delet a perticulo delete a row
+function deleteData(data,index){//function for deleting data after accepting or rejection.To delet a perticulor delete a row
     data.splice(index,1)
     localStorage.setItem("admission",JSON.stringify(data));
     displayTable(data)
