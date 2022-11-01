@@ -490,10 +490,12 @@
 
         let name=document.createElement("h4")
         name.innerText=womensData[i].name;
+        name.setAttribute("id","nm")
         div.append(name);
 
         let price=document.createElement("h4")
         price.innerText="$"+womensData[i].price;
+        price.setAttribute("id","prc")
         div.append(price);
 
         let btn=document.createElement("button");

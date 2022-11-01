@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart page</title>
+    <style>
+        img{
+            width: 50%;
+        }#form{
+            display: grid;
+            width: 90%;
+            
+            grid-template-columns: repeat(4,1fr);
+            gap: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cart Page</h1>
+    <h1><a href="./womens.html">Womens</a></h1>
+    <h1><a href="./mens.html">Mens</a></h1>
+    <div id="form">
+
+    </div>
+</body>
+<script>
+        let lsdata=JSON.parse(localStorage.getItem("addingcart"))
+        function displaydata(data){
+            document.querySelector("#form").innerHTML=""  
+            data.forEach(function (element,index){
+                let div=document.createElement("div")
+                console.log(element);
+            let image=document.createElement("img")
+
+            image.setAttribute("src",element.image_url);
+            div.append(image)
+
+            let name=document.createElement("h4")
+            name.innerText=element.name;
+            div.append(name);
+
+            let price=document.createElement("h3")
+            price.innerText="$"+element.price;
+            div.append(price);
+
+            document.querySelector("#form").append(div);
+
+            });
+
+        }
+        displaydata(lsdata)
+
+</script>
+</html>
