@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+//     Write a function named waitPromise that accepts time in ms and returns a promise.
+// The promise should get resolved after given time.
+   
+    function waitpromise(time){
+        let promiseMade =new Promise((resolve,reject)=>{
+            setTimeout(function (){
+                resolve("resolve after 5 sec")
+            },time);
+    })
+    return promiseMade;
+    }
+    
+     
+    waitpromise(5000).then((x)=>console.log(x)).catch((x)=>console.log(x))
+</script>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" placeholder="write OTP" name="" id="in">
+    <button id="submit">Submit</button>
+    
+</body>
+</html>
+<script>
+    // let input=
+     let btn=document.querySelector("#submit")
+    // console.log(input)
+    btn.addEventListener("click",()=>{
+        let otp=document.querySelector("#in").value;
+        let otpPromise =new Promise((resolve,reject)=>{
+            if(otp==="1234"){
+                resolve("OTP is correct")
+            }else{
+                reject("OTP is Incorrect")
+            }
+        })
+        otpPromise.then((x)=>console.log(x)).catch((x)=>console.log(x));
+
+
+    })
+       
+    
+    
+
+</script>
