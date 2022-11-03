@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        #clock{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100vh;
+            font-size: 30px;
+            background-color: rgb(227, 138, 21);
+        }#clock>div{
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            background-color: rgb(40, 78, 65);
+            color: white;
+            margin: 20px;
+            padding: 20px;
+
+        }span{
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <div  id="clock" >
+        <div id="hr">15</div>
+        <span>:</span>
+        <div id="min">12</div>
+        <span>:</span>
+        <div id="sec">00</div>
+        
+        <div id="ampm">AM</div>
+    </div>
+</body>
+</html>
+<script>
+    function clock(){
+        let date=new Date();//catch the date 
+    let hour=date.getHours();//catche the hour
+    let minute=date.getMinutes();//catche the min
+    let second=date.getSeconds();//catche the sec
+    let half="";
+    if(hour>=12){
+        half="PM";
+
+    }else{
+        half="AM"
+    }
+    document.querySelector("#hr").innerText=hour;
+    document.querySelector("#min").innerText=minute;
+    document.querySelector("#sec").innerText=second;
+    document.querySelector("#ampm").innerText=half;
+
+    setInterval(clock,1000)//setting the interval for changes 
+    }
+    clock();
+    
+    
+</script>
