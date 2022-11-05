@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <style>#timer{
+        display: flex;
+    }
+           
+    </style>
+</head>
+<body>
+    <div id="timer">
+       <!-- <p id="hr">Hours</p>
+       <p id="min">Minutes</p>
+       <p id="sec">Seconds</p> -->
+       <div><input id="hour" type="number" >
+        <p id="hr">Hours</p>
+        </div>
+       <span> :</span>
+        <div><input id="minute" type="number" >
+        <p id="min">Minutes</p>
+        </div> <span> :</span>
+       <div><input id="second" type="number">
+        <p id="sec">Seconds</p>
+        </div>
+    
+    </div>
+    <div>
+        <button id="start">Start</button>
+       <button id="pause"> Pause </button>
+       <button id="reset">Reset</button>
+    </div>
+</body>
+</html>
+<script>
+    document.querySelector("#start").addEventListener("click",timerStart);
+    let pause=document.querySelector("#pause");
+    let reset=document.querySelector("#reset");
+
+        let x;
+
+        function timerStart(){
+
+            let hours=document.querySelector("#hour").value;
+            let minutes=document.querySelector("#minute").value;
+            let seconds=document.querySelector("#second").value;
+        if(hours>0 && minutes>0 & seconds>0){
+          
+            let x=setInterval(function (){
+            if(seconds<=60  && seconds!==0){
+                seconds--
+                document.querySelector("#second").value=seconds
+            }else if(seconds==0 && minutes<=60) {
+                seconds=60;
+                seconds.value=seconds;
+                minutes--
+                document.querySelector("#minute").value=minutes
+
+            }else if(minutes==0 && hours<=24){
+                minutes=60;
+                minutes.value=minutes;
+                hours--;
+                document.querySelector("#hour").value=hours;
+
+            }else if(hours==0){
+                hours=24
+                document.querySelector("#hour").value=hours
+            }
+            pause.addEventListener("click",function(){
+                clearInterval(x)
+            })      
+           },1000) 
+        }reset.addEventListener("click",function(){
+        document.querySelector("#hour").value=""; 
+        document.querySelector("#minute").value="";
+        document.querySelector("#second").value="";
+        clearInterval(x)
+    })
+   
+    }
+    
+
+    
+    
+</script>
