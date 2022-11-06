@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <style>
+        #container{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: auto;
+            gap: 20px 30px;
+            
+        }#container>div{
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            padding: 10px;
+           
+            
+        }#sort{
+            margin-bottom: 10px;
+            padding: 5px;
+        }#choose{
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        @media all and (min-width:400px) and (max-width:700px){
+
+            #container{
+
+            grid-template-columns: repeat(2,1fr);
+
+            }
+
+            }
+
+        @media all and (min-width:200px) and (max-width:399px){
+
+            #container{
+
+            grid-template-columns: repeat(1,1fr);
+
+            }
+            }
+    </style>
+</head>
+<body>
+    
+    <select onchange="handleSort()" id="sort">
+        
+        <option value="Low To High">Low To High</option>
+        <option value="High To Low">High To Low</option>
+    </select>
+    </div>
+   <div >
+    <select id="choose" onchange="Myfilter()">
+        <option value="All">All</option>
+        <option value="Americas">Americas</option>
+        <option value="Africa">Africa</option>
+        <option value="Asia">Asia</option>
+    </select>
+   </div>
+    <div id="container"></div>
+    
+</body>
+</html>
+<script>
+ let url = "https://restcountries.com/v3.1/all"
+
+let cards;
+
+async function getData(){
+    try {
+        let res = await fetch(url);
+        let out = await res.json();
+        cards = [...out];
+        displayCard(cards);
+    } 
+    catch (error) {
+        alert(error)
+    }
+    
+}
+getData();
+
+function displayCard(data){
+
+document.querySelector("#container").innerHTML = "";
+
+data.forEach(element => {
+    
+    let div = document.createElement("div");
+
+    let imageProd = document.createElement("img");
+    imageProd.setAttribute("src",element.flags.png)
+
+    let countryName = document.createElement("h2");
+    countryName.innerText=element.name.common;
+
+    let population = document.createElement("p");
+    population.innerText = "Population: " + element.population;
+    
+
+    let region = document.createElement("p");
+    region.innerText = "Region: " + element.region;
+
+    let capital = document.createElement("p");
+    capital.innerText = "Capital: " + element.capital;
+
+
+
+    div.append(imageProd,countryName,population,region,capital)
+
+    document.querySelector("#container").append(div)
+
+})
+}
+   
+   
+// filter function for area wise searching
+function Myfilter(){
+
+let selected = document.querySelector("#choose").value;
+  let filterData = cards.filter(function(elem){
+      if(selected=="All"){
+          return cards
+      }else {
+          return elem.region==selected;
+      }
+      
+  })
+  displayCard(filterData)
+}
+//sort function for sorting population wise
+function handleSort(){
+        let selected = document.querySelector("#sort").value;
+        if(selected=="Low To High"){
+
+            cards.sort((a,b)=>a.population - b.population)
+            displayCard(cards)
+        } 
+        else if(selected=="High To Low"){
+
+            cards.sort((a,b)=>b.population - a.population)
+            displayCard(cards)
+        }
+        
+    }
+    
+
+
+</script>
