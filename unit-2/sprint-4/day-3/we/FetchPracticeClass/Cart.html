@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Page</title>
+    <style>
+        .container{
+           display: grid;
+           grid-template-columns: repeat(4,1fr);
+           grid-template-rows: auto;
+           text-align: center;
+          
+            gap: 20px;
+            padding: 5px;
+        }img{
+            width: 50%;
+        }.container>div{
+            text-align: center;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            gap: 20px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p class="total"></p>
+    </div>
+  <div class="container"></div>
+
+    
+</body>
+</html>
+
+<script>
+    let ls_data=JSON.parse(localStorage.getItem("cart"));
+    //-----------------------------------------------------
+    let total_price=ls_data.reduce((acc,ele)=>{ // creting function for adding price those item your cart
+        return acc+ele.price
+
+    },0);
+        document.querySelector(".total").innerText=total_price; 
+//-----------------------------------------------------------------------
+    function DisplayData(all_data){
+    document.querySelector(".container").innerHTML=""
+
+    all_data.forEach((elem,index)=>{
+        let div1=document.createElement("div");
+
+        let image_tag=document.createElement("img");
+        image_tag.src=elem.image;
+    
+        let title_tag=document.createElement("p");
+        title_tag.innerText=elem.title
+
+        let price_tag=document.createElement("p");
+        price_tag.innerText=elem.price;
+
+        let category_tag=document.createElement("p");
+        category_tag.innerText=elem.category;
+
+        let add_btn=document.createElement("button");//creating button for adding quantity
+        add_btn.innerText="+";
+        add_btn.addEventListener("click",function(){
+           
+            quantity.innerText= +(quantity.innerText)+1
+
+            let total_price=all_data.reduce((acc,ele)=>{//this function for creating for when our qnt is increase so our price also increase
+                return acc+(ele.price*(+(quantity.innerText)))
+            },0);
+            document.querySelector(".total").innerText=total_price;//its showing total price in p tags
+        })
+        
+
+        let remove_btn=document.createElement("button");//creating button for subtracting quantity
+        remove_btn.innerText="-";
+        remove_btn.addEventListener("click",function(){
+        quantity.innerText= +(quantity.innerText)-1;
+        
+        let total_price=all_data.reduce((acc,ele)=>{//this function for creating for when our qnt is increase so our price also increase
+                return acc - (ele.price*(+(quantity.innerText)))
+            },0);
+
+            document.querySelector(".total").innerText=Math.abs(total_price); 
+
+            if(quantity.innerText==="0"){
+            all_data.splice(index,1);//delete the item when item qnt is 0
+            localStorage.setItem("cart",JSON.stringify(all_data));//storing data in localstorage
+              DisplayData(all_data);
+            }
+        })
+
+        let quantity=document.createElement("span");//it showing how much quantity selected
+        quantity.innerText="1"
+
+        div1.append(image_tag,title_tag,price_tag,category_tag,add_btn,quantity,remove_btn);
+        document.querySelector(".container").append(div1)
+
+
+    })
+    
+
+}
+
+DisplayData(ls_data)
+</script>
