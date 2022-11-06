@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Dom</title>
+    <style>
+        #container{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: auto;
+            gap: 20px;
+        }
+        #container>div>img{
+            width: 90%;
+        }#container>div{
+            text-align: center;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }#input{
+            padding: 20px 20px;
+            width: 300px;
+            
+        }#inputTag{
+            display: flex;
+            gap: 20px;
+        }#inputTag>h6{
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body><div id="inputTag">
+    <h6>Search</h6>
+    <input oninput="Search()" type="text" id="input" placeholder="Serach Product Here">
+</div>
+    
+    <div id="container"></div>
+</body>
+</html>
+<script>
+    
+
+    let bag=[]
+    let cartitems=JSON.parse(localStorage.getItem("cartProduct"));
+    let url="https://fakestoreapi.com/products"
+    fetch(url)
+    .then((res)=>res.json())
+    .then((data)=>{                                                                                                                                                                                                         
+       bag=data
+       console.log( data);
+       displayCard(data);
+    })
+   //Creating Serching(bar) function
+   function Search(){
+     let q= document.querySelector("input").value;//catching input value
+     //console.log(q)
+    let newData=bag.filter(function(elem){
+       return elem.title.toLowerCase().includes(q.toLowerCase())//ye hmne isliye kia h jab koi sirf ek word ko search kre tb usse related sare words aa jaye .
+
+
+    })  
+        //console.log(newData);
+        displayCard(newData)
+    }
+
+
+
+
+
+
+   function displayCard(data){
+    document.querySelector("#container").innerHTML="";//this line showing emty. when someone serching product and that prodcut shows in front
+     
+    data.forEach(function (elem){ //creating divs
+        let div=document.createElement("div");
+
+        let prodImg=document.createElement("img")
+        prodImg.setAttribute("src",elem.image)
+
+        let title=document.createElement("h2")
+        title.innerText=elem.title
+
+        let des=document.createElement("p")
+        des.innerText=elem.description
+
+
+        let cost=document.createElement("p")
+        cost.innerText="$"+elem.price
+
+        let rating=document.createElement("p")
+        rating.innerText="Rate"+" - "+elem.rating.rate
+
+        let btn=document.createElement("button");
+        btn.innerText="Add to cart";
+        btn.addEventListener("click",function(){
+            cartitems.push(elem)
+            localStorage.setItem("cartProduct",JSON.stringify(cartitems))
+        })
+
+        div.append(prodImg,title,des,cost,rating,btn);
+
+        document.querySelector("#container").append(div)
+
+    })
+   }
+</script>
