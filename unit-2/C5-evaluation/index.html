@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Country Finder</title>
+    <style>
+      /* Write all necessery css here  */
+      #all_countries{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        grid-template-rows: auto;
+        row-gap: 20px;
+        column-gap: 30px;
+      
+      }
+      #all_countries div{
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        padding: 10px;
+        
+      }
+
+      #sort_population{
+        display: inline;
+        display: flex;
+        margin-left: 700px;
+        padding: 10px;
+
+      }
+
+      #filter_region{
+        display: inline;
+        display: flex;
+        margin-left: 700px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <select id="sort_population" onchange="sortPopulation()">
+      <option value="">Sort By Population</option>
+      <option value="asc">ASC</option>
+      <option value="desc">DESC</option>
+    </select>
+    <select id="filter_region" onchange="filterfun()" >
+      <option value="">Filter By Region</option>
+      <option value="Africa">Africa</option>
+      <option value="Americas">Americas</option>
+      <option value="Asia">Asia</option>
+      <option value="Europe">Europe</option>
+      <option value="Oceania">Oceania</option>
+    </select>
+    <div id="all_countries">
+      <!-- Append Country Cards here  -->
+    </div>
+  </body>
+  <script>
+    // Write all necessery JS here
+
+    let cards=null
+    let url="https://restcountries.com/v3.1/all";
+    async function getData(){
+      try{
+        let res= await fetch(url);
+        let out=await res.json();
+        cards=[...out];
+        displaycard(cards)
+        console.log(cards)
+      }catch(err){
+        alert(err);
+      }
+    }
+
+    getData();
+
+
+    function displaycard(data){
+
+      document.querySelector("#all_countries").innerHTML="";
+
+      data.forEach(element=>{
+
+        let div=document.createElement("div");
+
+        let image_tag=document.createElement("img");
+        image_tag.src=element.flags.png;
+
+        let name=document.createElement("h3");
+        name.innerText=element.name.common;
+
+        let population=document.createElement("p");
+        population.innerText="Population:"+" "+element.population;
+
+        let region=document.createElement("p");
+        region.innerText="Region:"+" "+element.region;
+
+        let capital=document.createElement("p");
+        capital.innerText="Capital:"+" "+element.capital;
+
+        div.append(image_tag,name,population,region,capital)
+        document.querySelector("#all_countries").append(div);
+        
+      })
+    }
+
+    // --------------------------------------------------------------------------------
+
+    function filterfun(){
+
+      let selected=document.querySelector("#filter_region").value;
+
+      let filterdata=cards.filter(function(elem){
+        if(selected==""){
+          return cards;
+        }else{
+          return elem.region==selected;
+        }
+
+      })
+      displaycard(filterdata);
+
+    }
+  
+
+
+// ------------------------------------------------------------------------------------------------
+
+
+    // document.querySelector("#sort_population").addEventListener("change",()=>{
+    //   let selected=document.querySelector("#filter_region").value;
+
+    //   if(selected=="" && document.querySelector("#sort_population").value=="" ){
+    //     displaycard(cards);
+    //   }
+    //   if(selected==""){
+    //     displaycard(sortData(cards))
+    //   }else{
+    //     displaycard(filterdata(cards))
+    //   }
+    // })
+
+
+    // document.querySelector("#filter_region").addEventListener("change",()=>{
+    //   let selected=document.querySelector("#filter_region").value;
+    //   let sort= document.querySelector("#sort_population").value;
+    //   if(selected=="" && sort==""){
+    //     displaycard(cards)
+    //   }
+    //   if(selected=="" && sort!=""){
+    //     displaycard(sortData(cards));
+    //   }else{
+    //     displaycard(filterdata(cards));
+    //   }
+   
+    // })
+
+
+    // function filterdata(data){
+    //   let selected=document.querySelector("#filter_region").value;
+    //   let array=data.filter((elem)=>{
+    //     return elem.region==selected
+    //   })
+    //   return array
+    // }
+
+
+    // function sortData(data){
+    //   data=data.sort((a,b)=>{
+    //     if(document.querySelector("#sort_population").value=="asc"){
+    //       return a.population-b.population;
+    //     }if(document.querySelector("#sort_population").value=="desc"){
+    //         return b.population-a.population
+    //     }if(document.querySelector("#sort_population").value==""){
+    //         return 
+    //     }
+    //   })
+    //   return data;
+    // }
+
+    //--------------------------------------------------------------------------------------------------------------
+
+    function sortPopulation(){
+     let selected=document.querySelector("#sort_population").value;
+
+      if(selected=="asc"){
+        cards.sort((a,b)=>a.population-b.population)
+        
+       
+      }if (selected=="desc"){
+        cards.sort((a,b)=>b.population-a.population)
+        
+
+      }if(selected==""){
+        return cards;
+      }
+      displaycard(cards);
+    }
+
+
+
+
+
+
+  </script>
+</html>
