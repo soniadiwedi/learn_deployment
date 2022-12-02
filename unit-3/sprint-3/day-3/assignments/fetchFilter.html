@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch</title>
+</head>
+<body>
+  <table>
+   <thead>
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Status</th>
+    </tr>
+   </thead>
+   <tbody></tbody>
+  </table>
+</body>
+</html>
+<script>
+//     let cards;
+//    async function fun(){
+//     let user=await fetch("https://jsonplaceholder.typicode.com/todos");
+//     let out= await user.json();
+//     console.log(out);
+//     completeData(out)
+//    }
+
+//    fun();
+
+async function myfetch(){
+    try{
+        let res= await fetch("https://jsonplaceholder.typicode.com/todos");
+        let out= await res.json()
+        console.log(out);
+        
+        completeData(out)
+    }
+    catch(err){
+        alert(err);
+    }
+}
+
+myfetch();
+
+   function completeData(data){
+        let filtered=data.filter((el)=>{
+        if(el.completed== false){
+            return el;
+        } 
+            
+        });
+        displayData(filtered)
+   }
+
+
+
+   function displayData(out){
+        let tbody=document.querySelector("tbody")
+        
+        out.forEach((el)=>{
+            let row=document.createElement("tr");
+
+            let id=document.createElement("td");
+            id.innerText=el.id;
+
+            let title=document.createElement("td");
+            title.innerText=el.title
+
+            let status=document.createElement("td");
+            status.innerText=el.completed;
+
+            row.append(id,title,status);
+           tbody.append(row)
+
+
+        })
+   }
+   
+</script>

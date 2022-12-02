@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>display</title>
+    <style>
+        #con{
+            display: grid;
+           grid-template-columns: repeat(2,1fr);
+        }
+    </style>
+</head>
+<body>
+    <div id="con"></div>
+</body>
+</html>
+<script>
+//  let productsProm = fetch('https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-products');
+
+//  productsProm
+//   .then((response) => {
+//     return response.json()
+//   })
+//   .then((data) => {
+//     console.log(data)
+//   })
+
+// store the data in a variable
+// try to render it in the DOM
+// title
+// image
+// price
+
+ async function myfun(){
+    try{
+        let res= await fetch('https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-products');
+        let out= await res.json();
+        console.log(out.data);
+        displayData(out.data)
+    }catch(err){
+        alert(err);
+    }
+ }
+ myfun()
+
+
+
+
+ function displayData(data){
+    let div=document.querySelector("#con");
+    data.forEach(function(el){
+        let div1=document.createElement("div")
+
+        let title=document.createElement("p")
+        title.innerText=el.title
+
+        let img=document.createElement("img")
+        img.setAttribute("src",el.image);
+
+        let price=document.createElement("h5")
+        price.innerText=el.price;
+
+        div1.append(title,img,price);
+        div.append(div1);
+
+    })
+ }
+
+</script>
+   
