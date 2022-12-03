@@ -1,6 +1,6 @@
 function getData(data) {
     return new Promise((resolve,reject)=>{
-        if(data===NaN){
+        if(isNaN(data)){
             reject ("error")
         }else if(data%2==1){
             setTimeout(()=>{
