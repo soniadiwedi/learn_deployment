@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="Search" oninput="Search()" id="search">
+    <div id="container"></div>
+    
+</body>
+</html>
+<script>
+    let url="http://www.omdbapi.com/?i=tt3896198&apikey=3e22a417"
+    let bag="";
+     async function FetchData(){
+        try{
+            let res=await fetch(url)
+            let out=await res.json();
+            bag = out
+            console.log(bag);
+        }catch(err){
+            alert(err)
+        }
+     }
+
+     FetchData();
+
+     function displayData(data){
+        document.querySelector("#container").innerHTML=""
+
+        data.forEach((elem)=>{
+
+            let div=document.createElement("div");
+
+            
+        })
+     }
+</script>

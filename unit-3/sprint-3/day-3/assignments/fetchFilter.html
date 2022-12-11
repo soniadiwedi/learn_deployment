@@ -7,6 +7,11 @@
     <title>Fetch</title>
 </head>
 <body>
+    <select id="select" onchange="completeData()">
+        <option value="false">false</option>
+        <option value="true">true</option>
+
+    </select>
   <table>
    <thead>
     <tr>
@@ -35,7 +40,7 @@ async function myfetch(){
         let res= await fetch("https://jsonplaceholder.typicode.com/todos");
         let out= await res.json()
         console.log(out);
-        
+       
         completeData(out)
     }
     catch(err){
@@ -46,12 +51,15 @@ async function myfetch(){
 myfetch();
 
    function completeData(data){
+        let va=document.querySelector("#select").value
         let filtered=data.filter((el)=>{
         if(el.completed== false){
             return el;
         } 
-            
-        });
+         
+
+
+        });            
         displayData(filtered)
    }
 
@@ -59,7 +67,7 @@ myfetch();
 
    function displayData(out){
         let tbody=document.querySelector("tbody")
-        
+        tbody.innerHTML=null;
         out.forEach((el)=>{
             let row=document.createElement("tr");
 

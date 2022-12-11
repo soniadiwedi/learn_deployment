@@ -69,7 +69,7 @@ function deleteData(data,index){//function for deleting data after accepting or 
 
 filter.addEventListener("change",function(){
    if(filter.value==""||filter.value=="all"){
-
+        displayTable(LSData)
    }else{
     let filteredData=LSData.filter(function(el){
         return el.course===filter.value

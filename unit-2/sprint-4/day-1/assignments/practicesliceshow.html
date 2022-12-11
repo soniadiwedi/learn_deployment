@@ -4,44 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Slideshow</title>
     <style>
         img{
-            width: 30%;
+            width: 20%;
         }
     </style>
 </head>
 <body>
-    <div id="con">
-       
+    <button onclick="start ()">Start</button>
+    <button onclick="stop()">Stop</button>
+    <div>
+        
     </div>
-    <button id="btn">Click</button>
 </body>
 </html>
 <script>
-    document.querySelector("#btn").addEventListener("click",myfun())
-    var images = [
+    let Image=[
     "https://static.remove.bg/remove-bg-web/ea3c274e1b7f6fbbfe93fad8b2b13d7ef352f09c/assets/start-1abfb4fe2980eabfbbaaa4365a0692539f7cd2725f324f904565a9a744f8e214.jpg",
     "https://images.unsplash.com/photo-1596073419667-9d77d59f033f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cm9zZSUyMGZsb3dlcnxlbnwwfHwwfHw%3D&w=1000&q=80",
     "https://i.pinimg.com/originals/25/d4/7a/25d47a70f2a24e82dcf0affadf1c1033.jpg",
     "https://img.freepik.com/premium-photo/bouquet-with-bright-flowers-background-floral-roses-beautiful-flowers-gift-holiday_73741-355.jpg?w=2000",
-  ];
+    ]
 
+    function start (){
+      let x=  setInterval(function(){
+        for(let i=0;i<Image.length;i++){
+        let img=document.createElement("img")
+        img.setAttribute("src",Image[i]);
 
-    let x;
-    
-    function myfun(){
-        let i=0
-        setInterval(function (){
-            if(i==images.length){
-                i=0
-            }
-        },1000)
-        let div=document.createElement("div");
-       let image= document.createElement("img");
-       image.setAttribute("src","https://img.freepik.com/premium-photo/bouquet-with-bright-flowers-background-floral-roses-beautiful-flowers-gift-holiday_73741-355.jpg?w=2000")
-        div.append(image);
-        document.querySelector("#con").append(div)
-       
+        document.querySelector("div").append(img)
     }
+    },1000)
+   
+    }
+
+    function stop(){
+        clearInterval(x)
+    }
+   
 </script>

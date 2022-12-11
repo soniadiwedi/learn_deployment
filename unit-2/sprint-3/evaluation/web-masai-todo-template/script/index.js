@@ -5,17 +5,16 @@ let lsdata=JSON.parse(localStorage.getItem("tasks"))||[];
 
 Aform.addEventListener("submit",function(event){
     event.preventDefault();
-    let taskname=document.querySelector("#name").value;
-    let tasktype=document.querySelector("#type").value;
-    let date=document.querySelector("#date").value;
-    let priority=document.querySelector("#priority").value;
+    // let taskname=document.querySelector("#name").value;
+    // let tasktype=document.querySelector("#type").value;
+    // let date=document.querySelector("#date").value;
+    // let priority=document.querySelector("#priority").value;
     //console.log("hi")
     let obj={
         taskname,
         tasktype,
         date,
         priority
-
     }
     if(obj.taskname==""|| obj.tasktype==""||obj.date==""||obj.priority==""){
         alert("please fill form")
@@ -25,11 +24,11 @@ Aform.addEventListener("submit",function(event){
     }
 })
 
-let tbody=document.querySelector("tbody")
+let tbody=document.querySelector("tbody") //catching table
 
 function displaytable(data){
+   
     tbody.innerHTML=null;
-
     data.forEach(function(element,index){
         let row=document.createElement("tr");
 

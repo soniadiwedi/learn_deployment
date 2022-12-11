@@ -7,6 +7,7 @@
     <title>fetch2</title>
 </head>
 <body>
+  
     <table>
         <thead>
             <tr>
@@ -14,6 +15,9 @@
                 
             </tr>
         </thead>
+        <tbody>
+
+        </tbody>
     </table>
     
 </body>
@@ -27,11 +31,30 @@
         let data= await user.json();
         console.log(data);
         sortData(data)
-        
+       
     }
 
 
     function sortData(data){
-       
+       let sort=data.sort((a,b)=>{
+        return a.title.localeCompare(b.title);
+       });
+       console.log(sort);
+       displayData(sort)
+    }
+
+
+    function displayData(data){
+        let tbody=document.querySelector("tbody");
+        
+        data.forEach((el)=>{
+            let row=document.createElement("tr");
+            let td=document.createElement("td");
+            td.innerText=el.title
+
+            row.append(td);
+            tbody.append(row);
+        })
+
     }
 </script>

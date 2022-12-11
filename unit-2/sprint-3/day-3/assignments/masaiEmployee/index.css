@@ -1,0 +1,31 @@
+/* Fill CSS here */
+h1{
+    text-align: center;
+    color: blue;
+    text-decoration: underline;
+
+}
+form{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    height: 400px;
+    width: 20%;
+   
+}
+
+table{
+    font-family: Arial;
+    border-collapse: separate;
+   width: 60%;
+   margin: 50px;
+   margin-left: 200px;
+   text-align: center;
+    
+}#mbl~input{
+    background-color: blue;
+    border-radius: 8px;
+    width: 55%;
+    margin-top: 20px;
+    color: white;
+}
+
+
