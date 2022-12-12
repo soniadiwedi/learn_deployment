@@ -1,3 +1,5 @@
+const { displayPartsToString } = require("typescript/lib/typescript");
+
 // --- do not touch  ↓↓↓↓↓↓↓↓↓↓↓↓ ----------
 const baseServerURL = `http://localhost:${
   import.meta.env.REACT_APP_JSON_SERVER_PORT
@@ -95,63 +97,100 @@ const urlTodosBase = `${baseServerURL}/todos/`;
 
 // }
 
-// loginUserButton.addEventListener("click",async function (){
-//   let object={username:loginUsername.value,password:loginUserPassword.value};
-//   let response=await fetch(userLoginURL,{
-//     method:{
-//       "Content-Type":"application/json"
-//     },
-//     body:JSON.stringify(object)
-//   })
-//   if(response.ok){
-//     let out=await response.json()
-//     console.log(out)
-//     localStorage.setItem("localAccessToken",out.accessToken);
-//         localStorage.setItem("userId",+out.user.id);
-//         notificationWrapper.innerHTML=`<h5 class="notification info">
-//         hey ${object.username}, welcome back!
-//     </h5>`
-//   }else{
-//     console.log("Failed")
-//   }
-// })
-//--------------------------------------------------------------------------
-loginUserButton.addEventListener("click", (e) => {
-  let objects = {};
-  obj["username"] = loginUserUsername.value;
-  obj["password"] = loginUserPassword.value;
-
-  getData(objects);
-});
-
-async function getData(objects) {
-  try {
-    let res = await fetch(userLoginURL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(objects),
-    });
-    if (res.ok) {
-      let data = await fetching.json();
-
-      localStorage.setItem("userId", +data.user.id);
-      localStorage.setItem("localAccessToken", data.accessToken);
-
-      notificationWrapper.innerHTML = `
-      <h5 class="notification info">
-          hey ${objects.username}, welcome back!
-      </h5>
-`;
-    } else {
-      console.log("failed");
-    }
-  } catch (error) {
-    alert("error");
+loginUserButton.addEventListener("click",async function (){
+  let object={username:loginUsername.value,password:loginUserPassword.value};
+  let response=await fetch(userLoginURL,{
+    method:{
+      "Content-Type":"application/json"
+    },
+    body:JSON.stringify(object)
+  })
+  if(response.ok){
+    let out=await response.json()
+    console.log(out)
+    localStorage.setItem("localAccessToken",out.accessToken);
+        localStorage.setItem("userId",+out.user.id);
+        notificationWrapper.innerHTML=`<h5 class="notification info">
+        hey ${object.username}, welcome back!
+    </h5>`
+  }else{
+    console.log("Failed")
   }
-}
+})
 
-getTodoButton.addEventListener("click", (e) => {
-  FetchTodos();
+getTodoButton.addEventListener("click",()=>{
+  fetchdata()
+})
+
+async function fetchdata(){
+  let res=await fetch(urlAllTodosOfUser,{
+    method:'GET',
+    headers:  {
+      "Content-Type": "application/json",
+      "Authorization":`Bearer${userAuthToken}`
+    },
+  })
+  if(res.ok){
+    let data=await res.json();
+    display(data)
+  }else{
+    alert("err")
+  }
+  
+}  
+
+function display(data){
+let todo=data.map((el)=>{
+  return itemreturn(el.id,el.title,el.completed)
 });
+mainSection.innerHTML=todo.join("");
+let box=document.querySelectorAll(".todo-item-checkbox");
+box.forEach((el)=>{
+  el.addEventListener("click",(e)=>{
+    toggledata(e.target.dataset.id.e.target.checked)
+  })
+})
+}
+   
+
+
+//--------------------------------------------------------------------------
+// loginUserButton.addEventListener("click", (e) => {
+//   let objects = {};
+//   obj["username"] = loginUserUsername.value;
+//   obj["password"] = loginUserPassword.value;
+
+//   getData(objects);
+// });
+
+// async function getData(objects) {
+//   try {
+//     let res = await fetch(userLoginURL, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(objects),
+//     });
+//     if (res.ok) {
+//       let data = await fetching.json();
+
+//       localStorage.setItem("userId", +data.user.id);
+//       localStorage.setItem("localAccessToken", data.accessToken);
+
+//       notificationWrapper.innerHTML = `
+//       <h5 class="notification info">
+//           hey ${objects.username}, welcome back!
+//       </h5>
+// `;
+//     } else {
+//       console.log("failed");
+//     }
+//   } catch (error) {
+//     alert("error");
+//   }
+// }
+
+// getTodoButton.addEventListener("click", (e) => {
+//   FetchTodos();
+// });
