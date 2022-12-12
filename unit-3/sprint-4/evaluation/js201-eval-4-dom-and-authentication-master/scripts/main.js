@@ -25,11 +25,11 @@ const urlAllTodosOfUser = `${baseServerURL}/todos?userId=${userId}`;
 const urlTodosBase = `${baseServerURL}/todos/`;
 
 
-loginUserButton.addEventListener("click",(event)=>{
+loginUserButton.addEventListener("click",(e)=>{
   let inputs=document.querySelectorAll(".row input");
   let object={
     [inputs[0].placeholder]: inputs[0].value,
-    [inputs[1].placeholder]: inputs[1].value,
+    [inputs[1].placeholder]: inputs[1].value
 
   }
   loginPage(object);
@@ -44,12 +44,14 @@ loginUserButton.addEventListener("click",(event)=>{
         "Content-Type":"application/json"
       }
     });
-      if(res.ok){
-        alert("LOGGED IN")
+      if(res.ok===true){
+        alert("Logged In")
         let token=await res.json()
         //console.log(token)
-        localStorage.setItem("localaccessToken",token.accessToken);
-        localStorage.setItem("userId",token.user.id);
+        let userAuthToken=token.accessToken;
+        let userId=token.user.id;
+        localStorage.setItem("localAccessToken",userAuthToken);
+        localStorage.setItem("userId",userIdclear);
         notificationWrapper.innerText=null;
         let head=document.createElement("h5")
         head.className="notification info"
@@ -67,23 +69,23 @@ loginUserButton.addEventListener("click",(event)=>{
   }
 }
 
-// let fetchTodo=async () =>{
-//   let res=await fetch(`${baseServerURL}/todos?userId=${userId}`,{
-//     method:'GET',
-//     headers:{
-//       "Content-Type":"application/json",
-//       Authorization : `Bearer ${localStorage.getItem("userAuthToken")}`
-//     }
-//   })
-//   if(res.ok){
-//     let out=await res.json();
-//     console.log(out);
-//   }else{
-//     alert("Done")
-//   }
-// }
+let fetchTodo=async () =>{
+  let res=await fetch(`${baseServerURL}/todos?userId=${userId}`,{
+    method:'GET',
+    headers:{
+      "Content-Type":"application/json",
+      Authorization : `Bearer ${localStorage.getItem("userAuthToken")}`
+    }
+  })
+  if(res.ok){
+    let out=await res.json();
+    console.log(out);
+  }else{
+    alert("Done")
+  }
+}
 
 
-// let render=(out)=>{
+let render=(out)=>{
 
-// }
+}
