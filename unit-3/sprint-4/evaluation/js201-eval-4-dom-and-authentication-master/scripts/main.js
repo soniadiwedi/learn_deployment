@@ -27,170 +27,73 @@ const urlAllTodosOfUser = `${baseServerURL}/todos?userId=${userId}`;
 const urlTodosBase = `${baseServerURL}/todos/`;
 
 
-// loginUserButton.addEventListener("click",(e)=>{
-//   let inputs=document.querySelectorAll(".row input");
-//   let object={
-//     [inputs[0].placeholder]: inputs[0].value,
-//     [inputs[1].placeholder]: inputs[1].value
+loginUserButton.addEventListener("click",(e)=>{
+  let inputs=document.querySelectorAll(".row input");
+  let object={
+    [inputs[0].placeholder]: inputs[0].value,
+    [inputs[1].placeholder]: inputs[1].value
 
-//   }
-//   loginPage(object);
-
-// });
-//    async function loginPage(object){
-//   try{
-//     let res=await fetch(userLoginURL,{
-//       method:"POST",
-//       body:JSON.stringify(object),
-//       headers:{
-//         "Content-Type":"application/json"
-//       }
-//     });
-//       if(res.ok===true){
-//         alert("Logged In")
-//         let token=await res.json()
-//         //console.log(token)
-//         let userAuthToken=token.accessToken;
-//         let userId=token.user.id;
-//         localStorage.setItem("localAccessToken",userAuthToken);
-//         localStorage.setItem("userId",userIdclear);
-//         notificationWrapper.innerText=null;
-//         let head=document.createElement("h5")
-//         head.className="notification info"
-//         head.innerText=`hey ${obj.username}, welcome back!`
-//         notificationWrapper.append(head);
-//       }
-
-//   }catch(error){
-//     alert("err");
-//   }
-// }
-// //--------------------------------------------------------------------------------
-// async function fetchTodo(){
-// //   let res=await fetch(`${baseServerURL}/todos?userId=${userId}`,{
-// //     method:'GET',
-// //     headers:{
-// //       "Content-Type":"application/json",
-// //       Authorization : `Bearer ${localStorage.getItem("userAuthToken")}`
-// //     }
-// //   })
-// //   if(res.ok){
-// //     let out=await res.json();
-// //     console.log(out);
-// //   }else{
-// //     alert("Done")
-// //   }
-// // }
-
-
-// // let render=(out)=>{
-
-// try{
-//   let fetch_todo=await fetch(`${baseServerURL}/todos?userId=${userId}`,{
-//     method:'GET',
-//     headers:{
-//       "Content-Type":"application/json",
-//       Authorization : `Bearer ${localStorage.getItem("userAuthToken")}`
-//     }
-//   })
-// }
-
-// }
-
-loginUserButton.addEventListener("click",async function (){
-  let object={username:loginUsername.value,password:loginUserPassword.value};
-  let response=await fetch(userLoginURL,{
-    method:{
-      "Content-Type":"application/json"
-    },
-    body:JSON.stringify(object)
-  })
-  if(response.ok){
-    let out=await response.json()
-    console.log(out)
-    localStorage.setItem("localAccessToken",out.accessToken);
-        localStorage.setItem("userId",+out.user.id);
-        notificationWrapper.innerHTML=`<h5 class="notification info">
-        hey ${object.username}, welcome back!
-    </h5>`
-  }else{
-    console.log("Failed")
   }
-})
+  loginPage(object);
 
-getTodoButton.addEventListener("click",()=>{
-  fetchdata()
-})
+});
+   async function loginPage(object){
+  try{
+    let res=await fetch(userLoginURL,{
+      method:"POST",
+      body:JSON.stringify(object),
+      headers:{
+        "Content-Type":"application/json"
+      }
+    });
+      if(res.ok===true){
+        alert("Logged In")
+        let token=await res.json()
+        //console.log(token)
+        let userAuthToken=token.accessToken;
+        let userId=token.user.id;
+        localStorage.setItem("localAccessToken",userAuthToken);
+        localStorage.setItem("userId",userIdclear);
+        notificationWrapper.innerText=null;
+        let head=document.createElement("h5")
+        head.className="notification info"
+        head.innerText=`hey ${obj.username}, welcome back!`
+        notificationWrapper.append(head);
+      }
 
-async function fetchdata(){
-  let res=await fetch(urlAllTodosOfUser,{
+  }catch(error){
+    alert("err");
+  }
+}
+//--------------------------------------------------------------------------------
+async function fetchTodo(){
+  let res=await fetch(`${baseServerURL}/todos?userId=${userId}`,{
     method:'GET',
-    headers:  {
-      "Content-Type": "application/json",
-      "Authorization":`Bearer${userAuthToken}`
-    },
+    headers:{
+      "Content-Type":"application/json",
+      Authorization : `Bearer ${localStorage.getItem("userAuthToken")}`
+    }
   })
   if(res.ok){
-    let data=await res.json();
-    display(data)
+    let out=await res.json();
+    console.log(out);
   }else{
-    alert("err")
+    alert("Done")
   }
-  
-}  
-
-function display(data){
-let todo=data.map((el)=>{
-  return itemreturn(el.id,el.title,el.completed)
-});
-mainSection.innerHTML=todo.join("");
-let box=document.querySelectorAll(".todo-item-checkbox");
-box.forEach((el)=>{
-  el.addEventListener("click",(e)=>{
-    toggledata(e.target.dataset.id.e.target.checked)
-  })
-})
 }
-   
 
 
-//--------------------------------------------------------------------------
-// loginUserButton.addEventListener("click", (e) => {
-//   let objects = {};
-//   obj["username"] = loginUserUsername.value;
-//   obj["password"] = loginUserPassword.value;
+let render=(out)=>{
 
-//   getData(objects);
-// });
+try{
+  let fetch_todo=await fetch(`${baseServerURL}/todos?userId=${userId}`,{
+    method:'GET',
+    headers:{
+      "Content-Type":"application/json",
+      Authorization : `Bearer ${localStorage.getItem("userAuthToken")}`
+    }
+  })
+}
 
-// async function getData(objects) {
-//   try {
-//     let res = await fetch(userLoginURL, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(objects),
-//     });
-//     if (res.ok) {
-//       let data = await fetching.json();
+}
 
-//       localStorage.setItem("userId", +data.user.id);
-//       localStorage.setItem("localAccessToken", data.accessToken);
-
-//       notificationWrapper.innerHTML = `
-//       <h5 class="notification info">
-//           hey ${objects.username}, welcome back!
-//       </h5>
-// `;
-//     } else {
-//       console.log("failed");
-//     }
-//   } catch (error) {
-//     alert("error");
-//   }
-// }
-
-// getTodoButton.addEventListener("click", (e) => {
-//   FetchTodos();
-// });
