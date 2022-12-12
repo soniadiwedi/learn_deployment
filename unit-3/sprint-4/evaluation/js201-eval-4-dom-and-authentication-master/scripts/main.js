@@ -25,31 +25,53 @@ const urlAllTodosOfUser = `${baseServerURL}/todos?userId=${userId}`;
 const urlTodosBase = `${baseServerURL}/todos/`;
 
 
-
-loginUserButton.addEventListener("click",loginfunction)
-
-async function loginfunction(){
-  let obj={
-    "username":userName,
-    "password":loginUserPassword
-  };
-  console.log(obj);
+loginUserButton.addEventListener("click",loginPage);
+let loginPage=async (obj)=>{
   try{
     let res=await fetch(userLoginURL,{
-      method:'POST',
+      method:"POST",
       body:JSON.stringify(obj),
       headers:{
-        "Content-Type" : "application/json"
-      },
-    })
-    if(res.ok==true){
-      let token=await res.json();
-      userAuthToken;
-      alert(`hey welcome back!`)
-    }else{
-      alert("User not found")
-    } 
-  }catch{
-    alert("Wrong username or password")
+        "Content-Type":"application/json"
+      }
+    });
+      if(res.ok){
+        alert("LOGGED IN")
+        let token=await res.json()
+        console.log(token)
+        let noti=document.querySelector("#notifications-wrapper");
+        noti.innerHTML=`
+        <h5 class="notification info">
+        hey ${obj.userName}, welcome back!
+     </h5>`
+        
+     userAuthToken=token.accessToken;
+     userId=token.user.id;
+
+      }
+
+  }catch(err){
+    console.log(err);
   }
+}
+
+let fetchTodo=async () =>{
+  let res=await fetch(`${baseServerURL}/todos?userId=${userId}`,{
+    method:'GET',
+    headers:{
+      "Content-Type":"application/json",
+      Authorization : `Bearer ${localStorage.getItem("userAuthToken")}`
+    }
+  })
+  if(res.ok){
+    let out=await res.json();
+    console.log(out);
+  }else{
+    alert("Done")
+  }
+}
+
+
+let render=(out)=>{
+  
 }
