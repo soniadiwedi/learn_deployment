@@ -25,12 +25,21 @@ const urlAllTodosOfUser = `${baseServerURL}/todos?userId=${userId}`;
 const urlTodosBase = `${baseServerURL}/todos/`;
 
 
-loginUserButton.addEventListener("click",loginPage);
-let loginPage=async (obj)=>{
+loginUserButton.addEventListener("click",(event)=>{
+  let inputs=document.querySelectorAll(".row input");
+  let object={
+    [inputs[0].placeholder]: inputs[0].value,
+    [inputs[1].placeholder]: inputs[1].value,
+
+  }
+  loginPage(object);
+
+});
+   async function loginPage(object){
   try{
     let res=await fetch(userLoginURL,{
       method:"POST",
-      body:JSON.stringify(obj),
+      body:JSON.stringify(object),
       headers:{
         "Content-Type":"application/json"
       }
@@ -38,40 +47,43 @@ let loginPage=async (obj)=>{
       if(res.ok){
         alert("LOGGED IN")
         let token=await res.json()
-        console.log(token)
-        let noti=document.querySelector("#notifications-wrapper");
-        noti.innerHTML=`
-        <h5 class="notification info">
-        hey ${obj.userName}, welcome back!
-     </h5>`
+        //console.log(token)
+        localStorage.setItem("localaccessToken",token.accessToken);
+        localStorage.setItem("userId",token.user.id);
+        notificationWrapper.innerText=null;
+        let head=document.createElement("h5")
+        head.className="notification info"
+        head.innerText=`hey ${obj.userName}, welcome back!`
+        notificationWrapper.append(head);
+
         
-     userAuthToken=token.accessToken;
-     userId=token.user.id;
+        
+    
 
       }
 
-  }catch(err){
-    console.log(err);
+  }catch(error){
+    alert("err");
   }
 }
 
-let fetchTodo=async () =>{
-  let res=await fetch(`${baseServerURL}/todos?userId=${userId}`,{
-    method:'GET',
-    headers:{
-      "Content-Type":"application/json",
-      Authorization : `Bearer ${localStorage.getItem("userAuthToken")}`
-    }
-  })
-  if(res.ok){
-    let out=await res.json();
-    console.log(out);
-  }else{
-    alert("Done")
-  }
-}
+// let fetchTodo=async () =>{
+//   let res=await fetch(`${baseServerURL}/todos?userId=${userId}`,{
+//     method:'GET',
+//     headers:{
+//       "Content-Type":"application/json",
+//       Authorization : `Bearer ${localStorage.getItem("userAuthToken")}`
+//     }
+//   })
+//   if(res.ok){
+//     let out=await res.json();
+//     console.log(out);
+//   }else{
+//     alert("Done")
+//   }
+// }
 
 
-let render=(out)=>{
-  
-}
+// let render=(out)=>{
+
+// }
