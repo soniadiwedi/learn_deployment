@@ -17,6 +17,6 @@ export default function App() {
           followers={66868}
           address={"4018 sach Trail"}
           />
-
+  <Courses/>
   </>)
 }

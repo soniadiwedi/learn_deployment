@@ -16,7 +16,7 @@ export default function Courses(){
     </ol>
     <h2>Part Time Courses</h2>
     <ol>
-        <li>Full Stack Web Fevelopment</li>
+        <li>Full Stack Web Fevelopment/i</li>
         <ul>
             <li>Eligibility : 18-28 yrs</li>
             <li> Duration : 30 weeks</li>
