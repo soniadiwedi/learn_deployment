@@ -1,38 +1,52 @@
 import React from "react";
 
+import Addtodo from "./AddTodo";
+import TodoItem from "./TodoItem";
 function Todo(){
-const[inputvalue,settext]=React.useState("")
 const [todos,setTodos]=React.useState([]);
 
-function handleChange(e){
-    // console.log(e.target.value)
-    settext(e.target.value)
+function handleAddTodo(inputvalue){
+  const NewItem={
+    title:inputvalue,
+    status:false,//it is completed or not
+    id:Date.now()+inputvalue+Math.random()
+  }
+  const todoListAfterAddition=[...todos,NewItem];//creating new arr with new item
+  setTodos(todoListAfterAddition);
+  // console.log(todoListAfterAddition)
 }
 
-function handleAddTodo(){
-    const NewItem={
-        title:inputvalue,
-        status:false,
-        id:Date.now()+inputvalue+Math.random()
-    }
-    const todoListAfterAddition=[...todos,NewItem];//creating new arr with new item
-    setTodos(todoListAfterAddition)
+
+const handleDelete=(id)=>{
+  const deleted=todos.filter((el)=>(el.id!==id)
+  )
+  setTodos(deleted)
 }
 
-  const newtodo=todos.map((el)=>{
-    return (<li key={el.id}>{el.title}</li>)
-  })
+const handleToggle=(id)=>{
+  const updatedtodo=todos.map((el)=>(el.id===id?{...todos, status: !el.status}:el)
+  );
+  setTodos(updatedtodo)
+}
 
-console.log(todos)
+ 
+
+//console.log(todos)
     return (
     <div>
-      <div>    
-        <input  value={inputvalue} placeholder="write todo" onChange={handleChange} />
-        <button onClick={handleAddTodo}>Add</button>    
-        
-      </div>
+     <Addtodo handleAddTodo={handleAddTodo}/>
       <div>
-        <ul>{newtodo}</ul>
+      
+        {todos.map((el)=>{
+        return  <TodoItem 
+          key={el.id}
+          id={el.id}
+          title={el.title}
+         status={el.status}
+         handleToggle={handleToggle}
+         handleDelete={handleDelete}
+      />
+        })}
       </div>
     </div>
     
