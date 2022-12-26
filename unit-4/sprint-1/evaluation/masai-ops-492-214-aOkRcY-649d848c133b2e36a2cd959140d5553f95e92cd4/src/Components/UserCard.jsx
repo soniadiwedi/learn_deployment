@@ -16,7 +16,7 @@ function handlechange(){
         <h3 >Posts</h3>
         <p data-testid = "user_posts">{pro.posts}</p>
         <h3>Followers</h3>
-        <p data-testid = "user_followers">{}pro.followers</p>
+        <p data-testid = "user_followers">{pro.followers}</p>
 
         <button onClick={handlechange}>{follows}</button>
     </>
