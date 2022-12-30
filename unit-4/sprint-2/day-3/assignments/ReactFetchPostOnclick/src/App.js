@@ -1,17 +1,13 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Post from "./Components/Post"
-
-// function getData(){
-//   return fetch("").then((res)=>res.json()).catch((err)=>console.log(err))
-  
-// }
 function App() {
   const[post,setpost]=useState([]);
 
-  const displayTodo=async()=>{
+ async function displayTodo(){
+  let url="https://jsonplaceholder.typicode.com/posts"
     try{
-      let res=await fetch(`https://jsonplaceholder.typicode.com/posts?_limit=10`)
+      let res=await fetch(url)
       let data=await res.json();
       setpost(data)
       console.log(data)
@@ -19,23 +15,17 @@ function App() {
         console.log(err)
     }
   }
-
-  useEffect (()=>{
-   
-  },[])
- 
   ////////////////////////////////////////////////////////////////
   return (
     <div className="App" data-testid="app">
-      <button onClick={displayTodo}
-        id="get-posts-btn"
-      >
+      <button id="get-posts-btn"
+      onClick={()=>displayTodo()}>
         GET POSTS
       </button>
       <div id="post-container">
         {
           post.map((el)=>{
-            return <Post key={el.id} title={el.title} body={el.body}/>
+            return <Post id={el.id} title={el.title} body={el.body}/>
           })
         }
         

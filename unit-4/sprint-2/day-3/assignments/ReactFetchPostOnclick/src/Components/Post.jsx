@@ -1,7 +1,7 @@
 import React from "react";
-const Post = ({title,body}) => {
+const Post = ({title,id,body}) => {
   return (
-    <div className="post">
+    <div key={id} className="post">
       <h1>
           {title}
         {/* Here show the title of the post  */}
