@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 
 function Interval(){
-const [time,settime]=useState(4);
+const [time,settime]=useState(10);
 useEffect(()=>{
    let time= setInterval(()=>{
         settime((prev)=>{
             if(prev===1){
                 clearInterval(time)
+                return 0
             }
             return prev-1
         })
