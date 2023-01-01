@@ -1,0 +1,36 @@
+{
+  "products": [
+    {
+      "title": "sofa",
+      "price": "1200",
+      "imageUrl": "https://loremflickr.com/cache/resized/65535_50740978656_55c3a7817a_z_640_480_nofilter.jpg",
+      "id": 1
+    },
+    {
+      "title": "sun",
+      "price": "1200",
+      "imageUrl": "https://loremflickr.com/cache/resized/7324_12235811403_9c7d87f7bb_c_640_480_nofilter.jpg",
+      "id": 2
+    },{
+      "title": "sofa",
+      "price": "1200",
+      "imageUrl": "https://loremflickr.com/cache/resized/65535_50740978656_55c3a7817a_z_640_480_nofilter.jpg",
+      "id": 3
+    },{
+      "title": "sofa",
+      "price": "1200",
+      "imageUrl": "https://loremflickr.com/cache/resized/65535_50740978656_55c3a7817a_z_640_480_nofilter.jpg",
+      "id": 4
+    },{
+      "title": "sofa",
+      "price": "1200",
+      "imageUrl": "https://loremflickr.com/cache/resized/65535_50740978656_55c3a7817a_z_640_480_nofilter.jpg",
+      "id": 5
+    },{
+      "title": "sofa",
+      "price": "1200",
+      "imageUrl": "https://loremflickr.com/cache/resized/65535_50740978656_55c3a7817a_z_640_480_nofilter.jpg",
+      "id": 6
+    }
+  ]
+}
