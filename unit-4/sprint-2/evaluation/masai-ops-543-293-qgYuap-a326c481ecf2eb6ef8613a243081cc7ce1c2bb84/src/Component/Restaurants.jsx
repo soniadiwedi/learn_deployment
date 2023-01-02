@@ -13,16 +13,16 @@ function Restaurants() {
   let url="https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/getrestaurants"
   
   useEffect(()=>{
-    displaydata(page)
+    getdata(page)
   },[page])
 
   
-  const displaydata=async(page)=>{
+  const getdata=async(page)=>{
     setloding(true)
       try{
-        let res=await fetch (`https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/getrestaurants?limit=10&page=${page}`)
-        if(res.ok){
-          let data=await res.json();
+        let response=await fetch (`https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/getrestaurants?limit=10&page=${page}`)
+        if(response.ok){
+          let data=await response.json();
           setpost(data.data);
           settotal(data.totalpages)
           setloding(false)
@@ -33,7 +33,7 @@ function Restaurants() {
       }
   }
  //-----------------------------------
- const funPagination=(val)=>{
+ const togglefun=(val)=>{
   console.log(val)
   setpage((pre)=>{
     if(pre<val){
@@ -64,7 +64,7 @@ function Restaurants() {
       
       </div>
       <div>
-        <Pagination current={page} onChange={funPagination} total={total}/>
+        <Pagination current={page} onChange={togglefun} total={total}/>
       </div>
     </div>
   );
