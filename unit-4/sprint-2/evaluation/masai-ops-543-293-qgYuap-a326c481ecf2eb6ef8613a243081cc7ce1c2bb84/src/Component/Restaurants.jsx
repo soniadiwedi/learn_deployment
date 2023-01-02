@@ -3,9 +3,6 @@ import LoadingIndicator from "./LoadingIndicator";
 import RestaurantCard from "./RestaurantCard";
 import Pagination from "./Pagination";
 
-// const getdata(){
-//   return fetch("https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/getrestaurants").then((res)=>res.json()).catch((err)=>console.log(err))
-// }
 
 
 function Restaurants() {
@@ -66,10 +63,6 @@ function Restaurants() {
        }
       
       </div>
-      
-       
-        
-      
       <div>
         <Pagination current={page} onChange={funPagination} total={total}/>
       </div>
