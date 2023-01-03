@@ -60,9 +60,7 @@ function CreateNewProduct(){
       <input name="price" type="number" placeholder="write here product price" value={price} onChange={handleChange}/>
       </label>
       <br/>
-      <br/>
-      
-     
+      <br/>    
       <label>Image URL: 
       <input name="imageUrl" type="text" placeholder="imageUrl" value={imageUrl} onChange={handleChange}/>
       </label>
@@ -79,8 +77,6 @@ function CreateNewProduct(){
         </div>
         
         </div>)
-    
-
 }
 
 export default CreateNewProduct
