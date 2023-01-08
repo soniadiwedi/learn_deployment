@@ -11,7 +11,7 @@ function AllRoutes(){
             <Route path="/" element={<Home/>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/dashboard" element={<PrivateRoutes><Dashboard/></PrivateRoutes> }/>
-            <Route path="/settings" element={ <PrivateRoutes><Settings/></PrivateRoutes>}/>
+            <Route path="/dashboard/settings" element={ <PrivateRoutes><Settings/></PrivateRoutes>}/>
         </Routes>
     )
 }

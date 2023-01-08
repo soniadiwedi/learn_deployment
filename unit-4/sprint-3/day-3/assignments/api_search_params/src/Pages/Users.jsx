@@ -1,11 +1,18 @@
 import { useState, useEffect  } from "react";
 import { Link,useSearchParams } from "react-router-dom";
 
+const pageNo=(val)=>{
+    let no=Number(val)
+    if(no!=="number"){
+        no=1
+    }
+    return no
+}
 
 export default function Users() {
    const[post,setpost]=useState([]);
    const[serchparam,setsearchparms]=useSearchParams()
-   const[page,setpage]=useState(1)
+   const[page,setpage]=useState(pageNo(serchparam.get('query')))
 
 
    async function fetchdata(page){
