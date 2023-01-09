@@ -6,9 +6,9 @@ import PrivateRoute from "../Components/PrivateRoute";
 function AllRoutes() {
   return <div>{/* Add Home, Login and dashboard  */}
     <Routes>
-      <Route path="/" element={<Home/>}/>
-      <Route path="/login" element={<Login/>}/>
-      <Route path="/dashboard" element={ <PrivateRoute><Dashboard/></PrivateRoute>}/>
+      <Route path="/" element={<Home/>}></Route>
+      <Route path="/login" element={<Login/>}></Route>
+      <Route path="/dashboard" element={<PrivateRoute><Dashboard/></PrivateRoute>}></Route>
 
     </Routes>
   

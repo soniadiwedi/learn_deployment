@@ -11,7 +11,7 @@ const user={
 
 function Login() {
   const [userid,setuser]=useState(user);
-  const {isAuth,token,loginfun,logOutfun}=useContext(AuthContext)
+  const {authstate,loginfun,logOutfun}=useContext(AuthContext)
   const [boolean,setboolean]=useState(false);
 
   const handleChangefun=(e)=>{
@@ -45,8 +45,8 @@ function Login() {
     }
   }
 
-  if(isAuth){
-    return <Navigate to="/dashboard"/>
+  if(authstate.isAuth){
+    return <Navigate to={"/dashboard"}/>
   }
 
 

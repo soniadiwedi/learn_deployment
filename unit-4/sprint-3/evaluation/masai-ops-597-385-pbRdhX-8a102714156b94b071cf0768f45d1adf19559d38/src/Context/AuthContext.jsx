@@ -1,26 +1,33 @@
 import { useState } from "react";
 import { createContext } from "react";
 
+
+
+const initial={
+    isAuth:false,
+    token:null
+}
+
 const AuthContext=createContext();
 
 function AuthContextProvider({children}) {
-    const[isAuth,setisAuth]=useState(false);
-    const[token,settoken]=useState(null)
+    // const[isAuth,setisAuth]=useState(false);
+    // const[token,settoken]=useState(null)
 
-    function loginfun(token){
-        setisAuth(true)
-        settoken(token)
+    const[authstate,setauthstate]=useState(initial)
+
+    function loginfun(valu){
+       setauthstate({...authstate,isAuth:true,token:valu})
     }
     //---------------------------
-    function logOutfun(token){
-        setisAuth(false)
-        settoken("")
+    function logOutfun(){
+        setauthstate(initial)
     }
     //--------------------
 
     return (
         <>
-            <AuthContext.Provider value={{isAuth,token,loginfun,logOutfun}}>{children}</AuthContext.Provider>
+            <AuthContext.Provider value={{authstate,loginfun,logOutfun}}>{children}</AuthContext.Provider>
         </>
     )
 
