@@ -39,7 +39,7 @@ function Login() {
         alert("not found")
       }
 
-      console.log(data)
+     // console.log(data)
     }catch(err){
           console.log(err.message)
     }
