@@ -1,0 +1,34 @@
+{
+  "todo": [
+    {
+      "title": "hiii",
+      "status": true,
+      "id": 2
+    },
+    {
+      "title": "ni",
+      "status": true,
+      "id": 3
+    },
+    {
+      "title": "poha",
+      "status": false,
+      "id": 4
+    },
+    {
+      "title": "som",
+      "status": false,
+      "id": 5
+    },
+    {
+      "title": "dev",
+      "status": false,
+      "id": 6
+    },
+    {
+      "title": "shiv",
+      "status": false,
+      "id": 7
+    }
+  ]
+}
