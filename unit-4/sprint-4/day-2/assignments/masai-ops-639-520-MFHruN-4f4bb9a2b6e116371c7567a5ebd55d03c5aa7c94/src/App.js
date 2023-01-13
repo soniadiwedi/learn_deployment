@@ -42,7 +42,7 @@ function App() {
         </div>
         <div className="userpassword-wrapper">
           <label>User Password</label>
-          <input onChange={handleInput} value={state.email} type="password" data-testid="user-password" />
+          <input onChange={handleInput} value={state.password} type="password" data-testid="user-password" />
         </div>
         <button type="submit">Submit</button>
       </form>
