@@ -32,6 +32,8 @@ function App() {
     setSubmittedData(state)
     dispatch({type:"reset", payload:initialState})
   }
+
+console.log(state)
   return (
     <div className="App">
       <h2>useReducer Hook</h2>
