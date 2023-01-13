@@ -18,7 +18,7 @@ const reducer = (state, action) => {
                       password:action.payload
       }
       case "reset": return {             
-                    reset:  action.payload
+                    ...action.payload
                     
       }
       default : return {
@@ -31,7 +31,7 @@ function App() {
   // import and use the useReducer hook here, with the reducer function and the initialState.
   const[state,dispatch]=useReducer(reducer,initialState);
   //store the data in this object variable when you click on the submit button, to render, the data in the UI.
-  const [submittedData, setSubmittedData] = useState([]);
+  const [submittedData, setSubmittedData] = useState({});
 
   function handleInput(e){
     console.log(e.target.type,e.target.value)
@@ -54,11 +54,11 @@ function App() {
       <form className="form-wrapper" data-testid="form-wrapper" onSubmit={handleSubmit}>
         <div className="useremail-wrapper">
           <label>User Email</label>
-          <input onChange={handleInput}  type="email" data-testid="user-email" />
+          <input onChange={handleInput}  type="email" valu={state.email} data-testid="user-email" />
         </div>
         <div className="userpassword-wrapper">
           <label>User Password</label>
-          <input onChange={handleInput}  type="password" data-testid="user-password" />
+          <input onChange={handleInput} valu={state.password} type="password" data-testid="user-password" />
         </div>
         <button type="submit">Submit</button>
       </form>
@@ -67,7 +67,8 @@ function App() {
       {submittedData.email && submittedData.password ?<div>
         <div data-testid="submitted-data-email">User Email: {submittedData.email}</div>
         <div data-testid="submitted-data-password">User Password: {submittedData.password}</div>
-      </div>:
+      </div>
+      :
 
       <div data-testid="no-details-container">no details found</div>
     }
