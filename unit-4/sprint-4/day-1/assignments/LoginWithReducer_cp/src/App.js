@@ -17,8 +17,8 @@ const reducer = (state, action) => {
                       ...state,
                       password:action.payload
       }
-      case "reset": return {
-                    ...action.payload
+      case "reset": return {             
+                    reset:  action.payload
                     
       }
       default : return {
@@ -31,7 +31,7 @@ function App() {
   // import and use the useReducer hook here, with the reducer function and the initialState.
   const[state,dispatch]=useReducer(reducer,initialState);
   //store the data in this object variable when you click on the submit button, to render, the data in the UI.
-  const [submittedData, setSubmittedData] = useState({});
+  const [submittedData, setSubmittedData] = useState([]);
 
   function handleInput(e){
     console.log(e.target.type,e.target.value)
@@ -69,7 +69,7 @@ function App() {
         <div data-testid="submitted-data-password">User Password: {submittedData.password}</div>
       </div>:
 
-      <div data-testid="no-details-container">No details found</div>
+      <div data-testid="no-details-container">no details found</div>
     }
     </div>
   );
