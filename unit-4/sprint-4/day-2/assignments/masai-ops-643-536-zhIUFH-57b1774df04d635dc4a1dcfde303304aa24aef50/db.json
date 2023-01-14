@@ -1,0 +1,84 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "React",
+      "status": true
+    },
+    {
+      "id": 2,
+      "title": "Redux",
+      "status": true
+    },
+    {
+      "id": 3,
+      "title": "Css",
+      "status": true
+    },
+    {
+      "id": 4,
+      "title": "MongoDb",
+      "status": false
+    },
+    {
+      "id": 5,
+      "title": "TypeScript",
+      "status": false
+    },
+    {
+      "id": 6
+    },
+    {
+      "id": 7
+    },
+    {
+      "Neend": "",
+      "id": 8
+    },
+    {
+      "title": "react",
+      "status": false,
+      "id": 9
+    },
+    {
+      "title": "Code",
+      "status": false,
+      "id": 10
+    },
+    {
+      "title": "Code",
+      "status": false,
+      "id": 11
+    },
+    {
+      "title": "Code",
+      "status": false,
+      "id": 12
+    },
+    {
+      "title": "Code",
+      "status": false,
+      "id": 13
+    },
+    {
+      "title": "Codennnn",
+      "status": false,
+      "id": 14
+    },
+    {
+      "title": "Read",
+      "status": false,
+      "id": 15
+    },
+    {
+      "title": "Reading",
+      "status": false,
+      "id": 16
+    },
+    {
+      "title": "Reading2",
+      "status": false,
+      "id": 17
+    }
+  ]
+}

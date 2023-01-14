@@ -12,10 +12,6 @@ export default function Dashboard() {
   }
   const[item,setitem]=useState([]);
   const[name,setname]=useState("")
-
-
-
-
   useEffect(()=>{
     setTimeout(() => {
       fetchdata(name)
