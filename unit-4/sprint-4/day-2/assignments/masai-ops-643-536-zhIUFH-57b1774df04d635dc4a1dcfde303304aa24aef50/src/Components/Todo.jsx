@@ -22,12 +22,18 @@ const[todo,settodo]=useState(initial);
         method:'post',
         url:`http://localhost:${process.env.REACT_APP_JSON_SERVER_PORT}/todos`,
         data:todo
+    }).then((res)=>{
+      fetchdata().then((res)=>{
+        setitem(res.data)
+        settodo({...todo,title:""})
+        
+      })
     })
-    fetchdata().then((res)=>{
-      setitem(res.data)
-    })
+    
 }
-  console.log(item)
+ 
+
+console.log(item)
 
   useEffect(()=>{
     fetchdata().then((res)=>{
