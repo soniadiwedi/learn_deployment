@@ -41,15 +41,18 @@ const[todo,settodo]=useState(initial);
       <TodoInput todo={todo} settodo={settodo} CreateTodo={CreateTodo}/>
     {/* add TodoInput component here */}
     {/* map through the todos array and display the tasks */}
+    <div data-testid = "todos-wrapper">
     {
       item?.map((el)=>{
-        return <div data-testid = "todos-wrapper" key={el.id}>
+        return <div  key={el.id}>
               <p>{el.title} - {el.status?"True":"False"}</p> 
                
                 
         </div>
       })
     }
+    </div>
+    
     </div>
   );
 };
