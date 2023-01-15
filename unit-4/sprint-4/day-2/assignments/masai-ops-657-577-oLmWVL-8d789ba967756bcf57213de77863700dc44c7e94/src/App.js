@@ -72,7 +72,7 @@ function App(){
 
 console.log(submittedData)
  
-  return (
+   (
     <div className="App">
       <Heading as="h1">Login Form</Heading>
       <Box>
