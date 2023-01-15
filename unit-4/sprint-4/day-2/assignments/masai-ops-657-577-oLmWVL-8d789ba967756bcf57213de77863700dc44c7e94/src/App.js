@@ -72,7 +72,7 @@ function App(){
 
 console.log(submittedData)
  
-   (
+  return (
     <div className="App">
       <Heading as="h1">Login Form</Heading>
       <Box>
@@ -121,7 +121,7 @@ console.log(submittedData)
             <Tbody>
              {
               submittedData.map((e,i)=>{
-                return <UserRow key={i+1}   {...e}/>
+                return <UserRow key={i+1} {...e}/>
               })
              }
             </Tbody>
