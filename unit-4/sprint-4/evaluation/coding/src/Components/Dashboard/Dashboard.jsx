@@ -1,16 +1,35 @@
-
+import {Button,Input,TableContainer,Table,Tbody,Th,Thead,Tr,Td} from "@chakra-ui/react"
+import axios from "axios"
+import {useState,useEffect} from "react"
 export default function Dashboard() {
 
   // TODO: Remove below const and instead import them from chakra
-  const Button = () => <div />;
-  const Input = () => <div />;
-  const Table = () => <div />;
-  const TableContainer = () => <div />;
-  const Tbody = () => <div />;
-  const Th = () => <div />;
-  const Thead = () => <div />;
-  const Tr = () => <div />;
- 
+  // const Button = () => <div />;
+  // const Input = () => <div />;
+  // const Table = () => <div />;
+  // const TableContainer = () => <div />;
+  // const Tbody = () => <div />;
+  // const Th = () => <div />;
+  // const Thead = () => <div />;
+  // const Tr = () => <div />;
+
+  const[item,setitem]=useState([])
+  // const[status,setstaus]=(true)
+
+  function getData(){
+    axios.get(`http://localhost:${process.env.REACT_APP_JSON_SERVER_PORT}/houses`)
+    .then((res)=>{
+      setitem(res.data)
+      console.log(res.data)
+    })
+  }
+
+  useEffect(()=>{
+    getData()
+  },[]
+  )
+
+ console.log(item)
   return (
     <div>
         <div className="sortingButtons">
@@ -35,17 +54,22 @@ export default function Dashboard() {
               </Tr>
             </Thead>
             <Tbody> 
-              Map the below container against your data
-              {/* <Tr className = "houseDetails"  >
-                  <Td className = "name" ></Td>
-                  <Td className = "ownersName" ></Td>
-                  <Td className = "address" ></Td>
-                  <Td className = "areaCode" ></Td>
-                  <Td className = "rent" ></Td>
-                  <Td className = "isBachelorAllowed" ></Td>
-                  <Td className = "isMarriedAllowed" ></Td>
+              {/* Map the below container against your data */}
+              {
+                item?.map((el)=>{
+                  return  <Tr className = "houseDetails" key={el.id} >
+                  <Td className = "name" >{el.name}</Td>
+                  <Td className = "ownersName" >{el.ownerName}</Td>
+                  <Td className = "address" >{el.address}</Td>
+                  <Td className = "areaCode" >{el.areaCode}</Td>
+                  <Td className = "rent" >{el.rent}</Td>
+                  <Td className = "isBachelorAllowed" >{el.isBachelorAllowed ?"Yes":"No"}</Td>
+                  <Td className = "isMarriedAllowed" >{el.isMarriedAllowed? "Yes":"No"}</Td>
                   <Td className = "delete" > Delete </Td>
-              </Tr> */}
+              </Tr>
+                })
+              }
+             
             </Tbody>
           </Table>
         </TableContainer>

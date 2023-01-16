@@ -1,5 +1,5 @@
 import "./App.css";
-
+import Dashboard from "./Components/Dashboard/Dashboard";
 function App() {
 
   // TODO: Remove below const and instead import them from chakra
@@ -9,6 +9,7 @@ function App() {
       <Button width = "150px"className = "toggleForm" >
         Toggle Form  
       </Button>
+      <Dashboard/>
 
   </div>;
 }
