@@ -14,7 +14,9 @@ export default function Dashboard() {
   // const Tr = () => <div />;
 
   const[item,setitem]=useState([])
-  // const[status,setstaus]=(true)
+  const[order,setorder]=useState(true)
+  const[or,setor]=useState(true)
+  
 
   function getData(){
     axios.get(`http://localhost:${process.env.REACT_APP_JSON_SERVER_PORT}/houses`)
@@ -26,15 +28,30 @@ export default function Dashboard() {
 
   useEffect(()=>{
     getData()
-  },[]
+  },[order]
   )
 
+  useEffect(()=>{
+
+  },[or])
+
+  function handlesort(){
+      setitem(item.sort((a,b)=>a.rent-b.rent))
+      setor(!or)
+  }
+
+  function handlesortdec(){
+    
+    setitem(item.sort((a,b)=>b.rent-a.rent))
+    console.log(item)
+    setor(!or)
+  }
  console.log(item)
   return (
     <div>
         <div className="sortingButtons">
-          <Button className = "sortByRentAsc" >  Sort by Asc </Button>
-          <Button className = "sortByRentDesc"> Sort by Desc </Button>
+          <Button className = "sortByRentAsc" onClick={handlesort} >  Sort by Asc </Button>
+          <Button className = "sortByRentDesc" onClick={handlesortdec}> Sort by Desc </Button>
         </div>
 
         <Input className = "searchAddress"  placeholder = "Search Data" />
