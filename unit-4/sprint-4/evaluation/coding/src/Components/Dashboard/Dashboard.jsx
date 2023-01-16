@@ -46,6 +46,19 @@ export default function Dashboard() {
     console.log(item)
     setor(!or)
   }
+
+  
+
+
+  function handledelete(id){
+    axios({
+      method:'delete',
+      url:`http://localhost:${process.env.REACT_APP_JSON_SERVER_PORT}/houses/${id}`
+    })
+    setorder(!order)
+  }
+
+
  console.log(item)
   return (
     <div>
@@ -82,7 +95,7 @@ export default function Dashboard() {
                   <Td className = "rent" >{el.rent}</Td>
                   <Td className = "isBachelorAllowed" >{el.isBachelorAllowed ?"Yes":"No"}</Td>
                   <Td className = "isMarriedAllowed" >{el.isMarriedAllowed? "Yes":"No"}</Td>
-                  <Td className = "delete" > Delete </Td>
+                  <Td className = "delete" onClick={()=>handledelete(el.id)}> Delete </Td>
               </Tr>
                 })
               }
