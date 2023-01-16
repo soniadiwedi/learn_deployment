@@ -58,7 +58,13 @@ export default function Dashboard() {
     setorder(!order)
   }
 
-
+ function handleSearch(e){
+  axios.get(`http://localhost:${process.env.REACT_APP_JSON_SERVER_PORT}/houses?q=${e.target.value}`)
+  .then((res)=>{
+    setitem(res.data)
+    console.log(res.data)
+  })
+ }
  console.log(item)
   return (
     <div>
@@ -67,7 +73,7 @@ export default function Dashboard() {
           <Button className = "sortByRentDesc" onClick={handlesortdec}> Sort by Desc </Button>
         </div>
 
-        <Input className = "searchAddress"  placeholder = "Search Data" />
+        <Input className = "searchAddress" onChange={handleSearch} placeholder = "Search Data" />
 
 
         <TableContainer>
