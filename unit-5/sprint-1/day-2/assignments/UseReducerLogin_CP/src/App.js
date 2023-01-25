@@ -34,7 +34,7 @@ function App() {
   function handleSubmit(e){
      e.preventDefault()
     setSubmittedData((prev)=>{
-      return {...prev,state}
+      return {...prev,...state}
     })
     dispatch({type:"reset"})
   }
