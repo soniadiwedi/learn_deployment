@@ -28,12 +28,14 @@ function App() {
   // import and use the useReducer hook here, with the reducer function and the initialState.
   const[state,dispatch]=useReducer(reducer,initialState)
   //store the data in this object variable when you click on the submit button, to render, the data in the UI.
-  const [submittedData, setSubmittedData] = useState({email:"",password:""});
+  const [submittedData, setSubmittedData] = useState({});
 
 
   function handleSubmit(e){
      e.preventDefault()
-    setSubmittedData({...submittedData,...state})
+    setSubmittedData((prev)=>{
+      return {...prev,state}
+    })
     dispatch({type:"reset"})
   }
 
@@ -57,10 +59,10 @@ function App() {
 
 
       {
-      submittedData.email!=""&&submittedData.password!=""?  <div>
+      submittedData.email  && submittedData.password ?  <div>
         <div data-testid="submitted-data-email">User Email:{submittedData.email}</div>
         <div data-testid="submitted-data-password">User Password:{submittedData.password}</div>
-      </div>:   <div data-testid="no-details-container">no details found</div>
+      </div>:<div data-testid="no-details-container">no details found</div> 
       }
     
 
