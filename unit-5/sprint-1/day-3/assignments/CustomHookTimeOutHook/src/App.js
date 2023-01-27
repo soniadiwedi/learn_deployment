@@ -5,8 +5,9 @@ import useTimeout from "./hooks/useTimeout";
 function App() {
   // bring useTimeout hook here
   // bring useOnlineStatus hook here
-const ready=useTimeout(5000)
-const isUserOnline=useOnlineStatus(false)
+const {ready}=useTimeout(5000)
+console.log(ready)
+const isUserOnline=useOnlineStatus()
   return (
     <div className="App">
       <h1>Custom Hooks</h1>

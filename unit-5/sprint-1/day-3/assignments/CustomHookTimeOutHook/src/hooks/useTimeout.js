@@ -1,18 +1,18 @@
 import {useEffect, useState} from "react"
 
 const useTimeout = (delay) => {
-    const[ready,setReady]=useState(false)
+    const[show,setReady]=useState(false)
     useEffect(()=>{
-       let id=setInterval(()=>{
+       let id=setTimeout(()=>{
         setReady(true)
        },delay)
         return()=>{
-            clearInterval(id)
+            clearTimeout(id)
         }
        
     },[])
 
-    return ready
+    return {ready:show}
 };
 
 export default useTimeout;
