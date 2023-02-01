@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-
+import PropTypes from "prop-types"
 export const Pin =forwardRef( ({ maxChar,handlefocus,backSpaceHandler },ref) => {
 
   const keyHandler=(e,index)=>{
@@ -17,4 +17,8 @@ export const Pin =forwardRef( ({ maxChar,handlefocus,backSpaceHandler },ref) => 
           />;
 })
 
+
+ Pin.propTypes={
+  maxChar:PropTypes.number.isRequired,
+}
 // Check maxChar prop here
