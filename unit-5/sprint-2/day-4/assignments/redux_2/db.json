@@ -1,0 +1,29 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "status": false
+    },
+    {
+      "title": "pina",
+      "status": false,
+      "id": 2
+    },
+    {
+      "title": "rona",
+      "status": false,
+      "id": 3
+    },
+    {
+      "title": "masti",
+      "status": false,
+      "id": 4
+    },
+    {
+      "title": "done",
+      "status": false,
+      "id": 5
+    }
+  ]
+}
