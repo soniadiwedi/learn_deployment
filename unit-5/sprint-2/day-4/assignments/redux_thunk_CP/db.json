@@ -9,11 +9,7 @@
       "id": 2,
       "title": "Learn Redux",
       "status": false
-    },
-    {
-      "title": "hii",
-      "status": false,
-      "id": 3
     }
+  
   ]
 }
