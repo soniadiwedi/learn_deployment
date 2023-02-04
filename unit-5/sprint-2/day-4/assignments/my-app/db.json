@@ -1,0 +1,34 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "status": false
+    },
+    {
+      "title": "nlk",
+      "status": false,
+      "id": 2
+    },
+    {
+      "title": "rona",
+      "status": false,
+      "id": 3
+    },
+    {
+      "title": "khana",
+      "status": false,
+      "id": 4
+    },
+    {
+      "title": "bnana",
+      "status": false,
+      "id": 5
+    },
+    {
+      "title": "khao",
+      "status": false,
+      "id": 6
+    }
+  ]
+}
