@@ -10,6 +10,7 @@ import {
   postTodoRequestAction,
   postTodoSuccessAction,
 } from "../Redux/Todo/action";
+import { Link } from "react-router-dom";
 
 
 export default function Todolist() {
@@ -97,6 +98,7 @@ console.log("63",data)
                 <p>{el.title}</p>
                 <button onClick={()=>checgeStatus(el.id,el.status)}>{el.status?"Completed":"Not Completed"}</button>
                 <button onClick={()=>delTodo(el.id)} >Delete</button>
+                <Link to={`/todo/edit:${el.id}`}>Edit Link</Link>
             </div>
         })
       }
