@@ -15,9 +15,9 @@ import {
 //     return ()
 // }
 
-export const gettodoData = () => (dispatch) => {
+export const gettodoData =(dispatch) => {
   dispatch({ type: GET_TODOS_REQUEST });
-  return axios
+  axios
     .get(`http://localhost:${process.env.REACT_APP_JSON_SERVER_PORT}/todos`)
     .then((res) => {
       console.log(res.data);
@@ -31,13 +31,19 @@ export const gettodoData = () => (dispatch) => {
 
 
 export const postTodo=(todo)=>(dispatch)=>{
+
+  let obj={
+    title:todo,
+    status:false
+  }
+  console.log(obj)
   dispatch({ type: ADD_TODOS_REQUEST });
-  return axios
-    .post(`http://localhost:${process.env.REACT_APP_JSON_SERVER_PORT}/todos`,todo)
-    .then((res) => {
-      console.log(res.data);
-     return res
-    })
+ axios.post(`http://localhost:${process.env.REACT_APP_JSON_SERVER_PORT}/todos`,obj)
+ .then((res)=>{
+
+  gettodoData(dispatch)
+ })
+    
     .catch((err) => {
       console.log(err);
       dispatch({ type: ADD_TODOS_ERROR });

@@ -2,7 +2,7 @@ import React,{useEffect} from "react";
 import { gettodoData } from "../Redux/action";
 import TodoInput from "./TodoInput";
 import TodoList from "./TodoList";
-import { useDispatch } from "react-redux/es/exports";
+import { useDispatch } from "react-redux";
 
 
 // just write the fetch/get the todos logic when the component mounts, in this component
@@ -12,7 +12,7 @@ const Todo = () => {
   const dispatch=useDispatch()
 
   useEffect(()=>{
-    dispatch(gettodoData())
+    dispatch(gettodoData)
   },[])
   return (
     <div>

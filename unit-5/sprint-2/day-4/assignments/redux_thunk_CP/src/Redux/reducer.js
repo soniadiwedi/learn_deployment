@@ -19,7 +19,7 @@ const reducer = (state = initialState,{type,payload}) => {
     case ADD_TODOS_REQUEST:
       return {...state,isLoading:true}
     case ADD_TODOS_SUCCESS:
-      return {...state,isLoading:false,todos:[...state.todos,payload]}  
+      return {...state,isLoading:false}  
 
     case ADD_TODOS_ERROR:
       return {...state,isError:true,isLoading:false}  

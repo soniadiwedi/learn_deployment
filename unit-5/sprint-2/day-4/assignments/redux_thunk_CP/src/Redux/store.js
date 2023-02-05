@@ -15,4 +15,4 @@ const customMiddleware = (store) => (next) => (action) => {
 const store = legacy_createStore(reducer, applyMiddleware(customMiddleware));
 
 export { store };
-export { customMiddleware };
+

@@ -13,20 +13,20 @@ const TodoList = () => {
     }
   },shallowEqual)
 
-  
+  console.log(todo)
   return (
     <div data-testid='todo-list-wrapper'>
-      {isLoading && <h1>Loading......</h1>}
+      {/* {isLoading && <h1>Loading......</h1>} */}
       {/* map all the "individual/single" todo inside this div. */}
-      <div data-testid="single-todo" >
+      {/* <div data-testid="single-todo" > */}
         {
           todo?.map((el)=>{
-            return <div key={el.id}>
+            return <div  data-testid="single-todo" key={el.id}>
                <p>{el.title} - {el.status?"True":"False"}</p>
             </div>
           })
         }
-      </div>
+      {/* </div> */}
 
 
     </div>
