@@ -8,14 +8,14 @@ const Counter = () => {
     return store.themeReducer.theme
   })
 
-  // const style1={
-  //   color: "white",
-  //   backgroundColor: "black",
-  // }  
-  // const style2={
-  //   color: "black",
-  //   backgroundColor: "white",
-  // }  
+  const style1={
+    color: "white",
+    backgroundColor: "black",
+  }  
+  const style2={
+    color: "black",
+    backgroundColor: "white",
+  }  
   return (
     // the following div classname should be chnaged accrding to the theme
     <div data-testid={theme==="light"?"dark_theme":"light_theme"} >
