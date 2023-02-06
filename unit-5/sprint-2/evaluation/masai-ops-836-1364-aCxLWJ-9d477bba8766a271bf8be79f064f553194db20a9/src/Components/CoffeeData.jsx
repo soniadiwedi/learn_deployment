@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCoffData } from "../Redux/AppReducer/action";
+import { getCoffeeData } from "../Redux/AppReducer/action";
 import { store } from "../Redux/store";
 
 export default function CoffeeData() {
@@ -14,11 +14,11 @@ const dispatch=useDispatch();
   data:store.coffeeData
  }
 })
-console.log(data)
+console.log("data",data)
 
 //console.log(data)
 useEffect(()=>{
-  dispatch(getCoffData)
+  dispatch(getCoffeeData)
 },[])
 
   return (

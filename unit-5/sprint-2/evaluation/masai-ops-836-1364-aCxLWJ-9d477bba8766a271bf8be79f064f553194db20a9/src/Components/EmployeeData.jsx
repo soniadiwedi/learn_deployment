@@ -1,6 +1,6 @@
 import React,{useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getEmpData } from "../Redux/AppReducer/action";
+import { getEmployeeData } from "../Redux/AppReducer/action";
 
 export default function EmployeeData() {
 
@@ -18,7 +18,7 @@ console.log(data)
 
 //console.log(data)
 useEffect(()=>{
-  dispatch(getEmpData)
+  dispatch(getEmployeeData)
 },[])
 
   return (
