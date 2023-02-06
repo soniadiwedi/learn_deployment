@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom";
 
 function Navbar() {
-  const links=[{path:"/coffee-data", title:"CoffeeData" },
-              {path:"/restaurant-data", title:"RestaurantData"},
-               {path:"/employee-data",title:"EmployeeData"}]
+  const links=[{path:"/coffee-data", title:"Coffee Data" },
+  {path:"/employee-data",title:"Employee Data"},
+  {path:"/restaurant-data", title:"Restaurant Data"}]
 
   return <div className="navbar">
     {/*Provide the three links here */}
