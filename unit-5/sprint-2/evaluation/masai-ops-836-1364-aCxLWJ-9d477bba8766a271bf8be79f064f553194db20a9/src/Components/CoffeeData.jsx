@@ -1,28 +1,39 @@
-import React, { useEffect } from "react";
+import React,{useEffect,useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getCoffData } from "../Redux/AppReducer/action";
+import { store } from "../Redux/store";
 
 export default function CoffeeData() {
-  const data=useSelector((store)=>console.log(store.coffeeData))
-  const dispatch=useDispatch()
+ //const [data,setData]=useState()
+const dispatch=useDispatch();
+ const {isLoading,isError,data} = useSelector((store)=>{
+  console.log(store)
+ return {
+  isLoading:store.isLoading,
+  isError:store.isError,
+  data:store.coffeeData
+ }
+})
+console.log(data)
 
-  useEffect(()=>{
-    dispatch(CoffeeData)
-  },[])
-
+//console.log(data)
+useEffect(()=>{
+  dispatch(getCoffData)
+},[])
 
   return (
     <div>
       <h2>Coffee Data</h2>
       <div className="coffee_data">
-        {
-          data.map((el)=>{
-            return <div>
-              <img src={el.image} />
-            </div>
-          })
-        }
         {/* map the below div against your coffee data */}
         {/* Show image, title and price  */}
+        {isLoading?<h1>Loading...</h1>:isError?<h1>Error...</h1>:
+        data?.data?.map((el)=>(
+         <div key={el.id}> <img src={el.image}/>
+          <p>{el.title}</p>
+          <p>{el.price}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
