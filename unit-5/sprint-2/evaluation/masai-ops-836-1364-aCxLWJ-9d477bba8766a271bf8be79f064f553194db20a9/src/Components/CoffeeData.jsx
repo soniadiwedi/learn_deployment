@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function CoffeeData() {
+  const data=useSelector((store)=>console.log(store.coffeeData))
   const dispatch=useDispatch()
 
   useEffect(()=>{
