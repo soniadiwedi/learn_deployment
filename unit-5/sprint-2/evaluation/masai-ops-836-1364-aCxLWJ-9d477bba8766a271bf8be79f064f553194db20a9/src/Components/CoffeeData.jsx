@@ -14,6 +14,13 @@ export default function CoffeeData() {
     <div>
       <h2>Coffee Data</h2>
       <div className="coffee_data">
+        {
+          data.map((el)=>{
+            return <div>
+              <img src={el.image} />
+            </div>
+          })
+        }
         {/* map the below div against your coffee data */}
         {/* Show image, title and price  */}
       </div>
