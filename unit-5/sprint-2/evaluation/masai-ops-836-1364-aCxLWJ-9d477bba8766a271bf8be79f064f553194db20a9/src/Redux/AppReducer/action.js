@@ -24,6 +24,7 @@ export const getEmployeeData=(dispatch)=>{
 export const getRestData=(dispatch)=>{
     dispatch({type:GET_RESTAURANT_DATA_REQUEST})
     axios.get(`https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/getrestaurants`).then((res)=>{
+        console.log(res.data)
         dispatch({type:GET_RESTAURANT_DATA_SUCCESS,payload:res.data});
     })
     .catch((err)=>{
