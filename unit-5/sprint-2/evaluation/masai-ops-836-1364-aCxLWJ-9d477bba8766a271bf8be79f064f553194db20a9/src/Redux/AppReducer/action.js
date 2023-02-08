@@ -1,33 +1,54 @@
 import axios from "axios"
-import { GET_COFFEE_DATA_FAILURE, GET_COFFEE_DATA_REQUEST, GET_COFFEE_DATA_SUCCESS,GET_EMPLOYEE_DATA_REQUEST, GET_EMPLOYEE_DATA_SUCCESS, GET_RESTAURANT_DATA_FAILURE, GET_RESTAURANT_DATA_REQUEST, GET_RESTAURANT_DATA_SUCCESS, GET_REST_DATA_FAIL, GET_REST_DATA_REQ, GET_REST_DATA_SUCC } from "./actionType";
+import {getCoffeeFailure, getCoffeeRequest, getCoffeeSuccess, getEmployeeFailure, getEmployeeSuccess, getRestaurantFailure, getRestaurantRequest, getRestaurantSuccess} from "./actionType"
+//coffee
+export const getCoffeeDataRequest = () => {
+    return {type: getCoffeeRequest}
+}
+export const getCoffeeDataSuccess = (payload) => {
+    return {type: getCoffeeSuccess, payload}
+}
 
-export const getCoffeeData=(dispatch)=>{
-    dispatch({type:GET_COFFEE_DATA_REQUEST})
-    axios.get(`https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-coffee`).then((res)=>{
-        dispatch({type:GET_COFFEE_DATA_SUCCESS,payload:res.data});
-    })
-    .catch((err)=>{
-        dispatch({type:GET_COFFEE_DATA_FAILURE});
-    })
-};
+export const getCoffeeDataFailure = () => {
+    return {type: getCoffeeFailure}
+}
+// restaurant
+export const getRestaurantDataRequest = () => {
+    return {type: getRestaurantRequest}
+}
+export const getRestaurantDataSuccess = (payload) => {
+    return {type: getRestaurantSuccess, payload}
+}
 
-export const getEmployeeData=(dispatch)=>{
-    dispatch({type:GET_EMPLOYEE_DATA_REQUEST})
-    axios.get(`https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-employees`).then((res)=>{
-        dispatch({type:GET_EMPLOYEE_DATA_SUCCESS,payload:res.data});
-    })
-    .catch((err)=>{
-        dispatch({type:GET_COFFEE_DATA_FAILURE});
-    })
-};
+export const getRestaurantDataFailure = () => {
+    return {type: getRestaurantFailure}
+}
+// employee
+export const getEmployeeDataRequest = () => {
+    return {type: getEmployeeDataRequest}
+}
+export const getEmployeeDataSuccess = (payload) => {
+    return {type: getEmployeeSuccess, payload}
+}
 
-export const getRestData=(dispatch)=>{
-    dispatch({type:GET_RESTAURANT_DATA_REQUEST})
-    axios.get(`https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/getrestaurants`).then((res)=>{
-        console.log(res.data)
-        dispatch({type:GET_RESTAURANT_DATA_SUCCESS,payload:res.data});
-    })
-    .catch((err)=>{
-        dispatch({type:GET_RESTAURANT_DATA_FAILURE});
-    })
-};
+export const getEmployeeDataFailure = () => {
+    return {type: getEmployeeFailure}
+}
+
+export const getCoffeeData = (dispatch) => {
+    dispatch(getCoffeeDataRequest());
+    axios.get(`https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-coffee`).then((res) => dispatch(getCoffeeDataSuccess(res.data.data))).catch((err) => dispatch(getCoffeeDataFailure()))
+}
+
+export const getEmployeeData = (dispatch) => {
+    dispatch(getEmployeeDataRequest());
+    axios.get(`https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-employees`)
+    .then((res)=>dispatch(getEmployeeDataSuccess(res.data.data)))
+    .catch((err)=>dispatch(getEmployeeDataFailure()));
+}
+
+export const getRestaurantData = (dispatch) => {
+    dispatch(getRestaurantDataRequest());
+    axios.get(`https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/getrestaurants`)
+    .then((res)=>dispatch(getRestaurantDataSuccess(res.data.data)))
+    .catch((err)=>dispatch(getRestaurantDataFailure()));
+}

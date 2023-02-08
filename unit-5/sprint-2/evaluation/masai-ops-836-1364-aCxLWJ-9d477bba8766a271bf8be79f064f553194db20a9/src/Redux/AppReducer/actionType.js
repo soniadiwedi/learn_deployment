@@ -1,13 +1,9 @@
-export const GET_COFFEE_DATA_REQUEST="GET_COFFEE_DATA_REQUEST"
-export const GET_COFFEE_DATA_SUCCESS="GET_COFFEE_DATA_SUCCESS"
-export const GET_COFFEE_DATA_FAILURE="GET_COFFEE_DATA_FAILURE"
-
-
-export const GET_RESTAURANT_DATA_REQUEST="GET_RESTAURANT_DATA_REQUEST"
-export const GET_RESTAURANT_DATA_SUCCESS="GET_RESTAURANT_DATA_SUCCESS"
-export const GET_RESTAURANT_DATA_FAILURE="GET_RESTAURANT_DATA_FAILURE"
-
-
-export const GET_EMPLOYEE_DATA_REQUEST="GET_EMPLOYEE_DATA_REQUEST"
-export const GET_EMPLOYEE_DATA_SUCCESS="GET_EMPLOYEE_DATA_SUCCESS"
-export const GET_EMPLOYEE_DATA_FAILURE="GET_EMPLOYEE_DATA_FAILURE"
+export const getCoffeeRequest = "GET_COFFEE_REQUEST";
+export const getCoffeeSuccess = "GET_COFFEE_SUCCESS";
+export const getCoffeeFailure = "GET_COFFEE_FAILURE";
+export const getEmployeeRequest = "GET_EMPLOYEE_REQUEST";
+export const getEmployeeSuccess = "GET_EMPLOYEE_SUCCESS";
+export const getEmployeeFailure = "GET_EMPLOYEE_FAILURE";
+export const getRestaurantRequest = "GET_RESTAURANT_REQUEST";
+export const getRestaurantSuccess = "GET_RESTAURANT_SUCCESS";
+export const getRestaurantFailure = "GET_RESTAURANT_FAILURE";

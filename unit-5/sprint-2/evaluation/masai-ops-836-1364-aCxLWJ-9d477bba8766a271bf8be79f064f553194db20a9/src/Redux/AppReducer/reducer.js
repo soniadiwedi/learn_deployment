@@ -1,38 +1,95 @@
-import * as types from "./actionType";
+// import * as types from "./actionType";
+
+import {
+  getCoffeeFailure,
+  getCoffeeRequest,
+  getCoffeeSuccess,
+  getEmployeeFailure,
+  getEmployeeRequest,
+  getEmployeeSuccess,
+  getRestaurantFailure,
+  getRestaurantRequest,
+  getRestaurantSuccess
+} from "./actionType";
 
 const initialState = {
   isLoading: false,
-isError: false,
-coffeeData: [],
-restaurantData: [],
-employeeData : []
+  isError: false,
+  coffeeData: [],
+  restaurantData: [],
+  employeeData: []
 };
 
-const reducer = (state = initialState,{type,payload}) => {
-  switch(type){
-    case types.GET_COFFEE_DATA_REQUEST:
-      return {...state,isLoading:true};
-      case types.GET_EMPLOYEE_DATA_REQUEST:
-        return {...state,isLoading:true};
-        case types.GET_RESTAURANT_DATA_REQUEST:
-          return {...state,isLoading:true};
-          case types.GET_COFFEE_DATA_SUCCESS:
-            return {...state,isLoading:false,isError:false,coffeeData:payload}
-            case types.GET_EMPLOYEE_DATA_SUCCESS:
-            return {...state,isLoading:false,isError:false,employeeData:payload}
-            case types.GET_RESTAURANT_DATA_SUCCESS:
-            return {...state,isLoading:false,isError:false,restaurantData:payload}
-            case types.GET_COFFEE_DATA_FAILURE:
-              return {...state,isLoading:false,isError:true}
-              case types.GET_EMPLOYEE_DATA_FAILURE:
-              return {...state,isLoading:false,isError:true}
-              case types.GET_RESTAURANT_DATA_FAILURE:
-                return {...state,isLoading:false,isError:true}
-            default:
-              return state;          
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+      case getCoffeeRequest:
+          return {
+              ...state,
+              isLoading: true
+          }
 
+      case getCoffeeSuccess:
+          return {
+              ...state,
+              isLoading: false,
+              coffeeData: action.payload,
+          }
 
+      case getCoffeeFailure:
+          return {
+              ...state,
+              isLoading: false,
+              isError: true
+          }
+
+      case getEmployeeRequest:
+          return {
+              ...state,
+              isLoading: true
+          }
+
+      case getEmployeeSuccess:
+        console.log("employeeData",action.payload)
+          return {
+              ...state,
+              isLoading: false,
+              employeeData: action.payload
+              
+          }
+      case getEmployeeFailure:
+          return {
+              ...state,
+              isLoading: false,
+              isError: true
+          }
+
+      case getRestaurantRequest:
+          return {
+              ...state,
+              isLoading: false
+          }
+
+      case getRestaurantSuccess:
+        console.log("rest",action.payload)
+
+          return {
+              ...state,
+              isLoading: false,
+              restaurantData: action.payload,
+          }
+
+      case getRestaurantFailure:
+          return {
+              ...state,
+              isLoading: false,
+              isError: true
+          }
+      default:
+          return state
   }
+
 };
 
-export { reducer };
+export {
+  reducer
+};

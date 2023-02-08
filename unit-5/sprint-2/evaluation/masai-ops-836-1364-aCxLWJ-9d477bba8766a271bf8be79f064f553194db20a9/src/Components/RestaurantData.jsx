@@ -1,43 +1,52 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getEmpData, getRestData } from "../Redux/AppReducer/action";
+
+import { store } from "../Redux/store";
+import axios from "axios"
+import { getRestaurantData } from "../Redux/AppReducer/action";
 
 export default function RestaurantData() {
-
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   
- const {isLoading,isError,data} = useSelector((store)=>{
-  console.log(store)
- return {
-  isLoading:store.isLoading,
-  isError:store.isError,
-  data:store.restaurantData
-
- }
-})
-console.log(data)
-
-//console.log(data)
-useEffect(()=>{
-  dispatch(getRestData)
-},[])
-
-
+  useEffect(() => {
+    console.log("working")
+    dispatch(getRestaurantData)
+    //getData()
+  }, [])
+  const restaurantData = useSelector((store) => store.restaurantData);
+  const isLoading = useSelector((store)=>store.isLoading);
+  const isError = useSelector((store)=>store.isError);
+  console.log("restaurant",restaurantData)
+  console.log("resloading",isLoading);
+  console.log("resError",isError);
+  
+  if(isLoading){
+    return <h1>Loading...</h1>
+  }
+  if(isError){
+    return <h1>Error...</h1>
+  }
+  if(restaurantData===undefined){
+    return <h1>Wait</h1>
+  }
   return (
     <div>
       <h2> Restaurant Data </h2>
       <div className="restaurant_data">
         {/* Map the below div against your restaurant Data */}
         {/* show image, name, type, rating and number_of_votes */}
-        {isLoading?<h1>Loading...</h1>:isError?<h1>Error...</h1>:
-        data?.data?.map((el)=>(
-         <div key={el.id}> <img src={el.image}/>          
-         <p>{el.name}</p>
-          <p>{el.type}</p>
-          <p>{el.rating}</p>
-          <p>{el.number_of_votes}</p>
-          </div>
-        ))}
+
+        {restaurantData.map((item)=>
+      <div key={item.id}>
+      <h4>{item.name}</h4>
+      <h4>{item.type}</h4>
+      <h4>{item.rating}</h4>
+      <h4>{item.number_of_votes}</h4>
+      </div>
+      )}
+
+
+        
       </div>
     </div>
   );
