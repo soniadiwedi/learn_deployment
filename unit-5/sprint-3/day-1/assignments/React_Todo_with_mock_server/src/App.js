@@ -1,7 +1,7 @@
-import Todo from "./Components/Todo";
+import Todo, { Todos } from "./Components/Todo";
 
 function App() {
-  return <>{/* add Todo component here */} <Todo/> </>;
+  return <>{/* add Todo component here */} <Todos/> </>;
 }
 
 export default App;

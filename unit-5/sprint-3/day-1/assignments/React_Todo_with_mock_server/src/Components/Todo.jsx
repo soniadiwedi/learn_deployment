@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios"
-import TodoInput from "./TodoInput";
-const Todos = () => {
+import {TodoInput} from "./TodoInput";
+export const Todos = () => {
   const [Todo,setTodo]=useState([])
   const fetchTodo=async()=>{
   let res=await axios.get(`http://localhost:${process.env.REACT_APP_JSON_SERVER_PORT}/todos`)

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const TodoInput = ({fetPost}) => {
+export  const TodoInput = ({fetPost}) => {
 const [obj,setobj]=useState({
     title:"",
     status:false
@@ -15,4 +15,3 @@ console.log(obj)
    <button data-testid ="add-button" onClick={()=>{fetPost(obj)}} >Add Todo</button>
   </>
 }
-export default TodoInput
