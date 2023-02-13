@@ -2,14 +2,14 @@ import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 
 export default function Private({children}) {
-    const iAuth=useSelector((store)=>{
+    const isAuth=useSelector((store)=>{
         console.log(store)
-        return store.authReducer.iAuth
+        return store.authReducer.isAuth
     })
     const location=useLocation()
 
 
-    if(isAuth){
+    if(!isAuth){
         return <Navigate to="/login" state={location.pathname} replace/>
         
     }

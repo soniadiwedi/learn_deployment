@@ -8,16 +8,16 @@ export const Sidebar = () => {
   const [searchparams, setsearchparams] = useSearchParams();
   const initialstate = searchparams.getAll("rating");
   const [rating, setrating] = useState(initialstate || []);
-  const sortInitial = searchparams.get("year");
-  const [year, setyear] = useState(sortInitial || "");
+  const sortInitial = searchparams.get("order");
+  const [order, setorder] = useState(sortInitial || "");
 
   useEffect(() => {
     let params = {
       rating,
     };
-    rating && (params.year = year);
+    order && (params.order = order);
     setsearchparams(params);
-  }, [rating, year]);
+  }, [rating, order]);
 
   const handlechange = (e) => {
     let newrating = [...rating];
@@ -32,7 +32,7 @@ export const Sidebar = () => {
   };
 
   const handlesort = (e) => {
-    setyear(e.target.value);
+    setorder(e.target.value);
   };
   return (
     <DIV>
@@ -41,7 +41,8 @@ export const Sidebar = () => {
         <input
           data-testid="movie-filter-1"
           type="checkbox"
-          checked={rating.includes("\u2605 \u2606 \u2606 \u2606 \u2606")}
+          value="1"
+          checked={rating.includes("1")}
           onChange={handlechange}
         />
         <label>{"\u2605 \u2606 \u2606 \u2606 \u2606"}</label>
@@ -49,32 +50,32 @@ export const Sidebar = () => {
         <input
           data-testid="movie-filter-2"
           type="checkbox"
-          checked={rating.includes("\u2605 \u2605 \u2606 \u2606 \u2606")}
-          onChange={handlechange}
+          value="2"
+          checked={rating.includes("2")}
         />
         <label>{"\u2605 \u2605 \u2606 \u2606 \u2606"}</label>
         <br />
         <input
           data-testid="movie-filter-3"
           type="checkbox"
-          checked={rating.includes("\u2605 \u2605 \u2605 \u2606 \u2606")}
-          onChange={handlechange}
+          value="3"
+          checked={rating.includes("3")}
         />
         <label>{"\u2605 \u2605 \u2605 \u2606 \u2606"}</label>
         <br />
         <input
           data-testid="movie-filter-4"
           type="checkbox"
-          checked={rating.includes("\u2605 \u2605 \u2605 \u2605 \u2606")}
-          onChange={handlechange}
+          value="4"
+          checked={rating.includes("4")}
         />
         <label>{"\u2605 \u2605 \u2605 \u2605 \u2606"}</label>
         <br />
         <input
           data-testid="movie-filter-5"
           type="checkbox"
-          checked={rating.includes("\u2605 \u2605 \u2605 \u2605 \u2605")}
-          onChange={handlechange}
+          value="5"
+          checked={rating.includes("5")}
         />
         <label>{"\u2605 \u2605 \u2605 \u2605 \u2605"}</label>
         <br />
@@ -87,8 +88,8 @@ export const Sidebar = () => {
           data-testid="movie-sort-asc"
           type="radio"
           value={"asc"}
-          checked={year == "asc"}
-          onChange={(e) => handlesort(e)}
+          checked={order == "asc"}
+          onChange={handlesort}
         />
         <label>Ascending</label>
         <br />
@@ -96,8 +97,8 @@ export const Sidebar = () => {
           data-testid="movie-sort-desc"
           type="radio"
           value={"desc"}
-          checked={year == "desc"}
-          onChange={(e) => handlesort(e)}
+          checked={order == "desc"}
+          onChange={handlesort}
         />
         <label>Descending</label>
       </div>

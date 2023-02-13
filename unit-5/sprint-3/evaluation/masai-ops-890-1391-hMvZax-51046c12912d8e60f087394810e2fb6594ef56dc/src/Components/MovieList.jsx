@@ -15,8 +15,8 @@ export const MovieList = () => {
   let obj={
     params:{
       rating:searchparams.getAll("rating"),
-      _sort:searchparams.get("year") && "year",
-      _year:searchparams.get("year")
+      _sort:searchparams.get("order") && "order",
+      _year:searchparams.get("order")
     }
   }
 
@@ -25,7 +25,7 @@ useEffect(()=>{
  dispatch(getMovies(obj))
 },[location.search])
 
-  return <div data-testid="movie-list" style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)"}}>{/* Map through movie array  */}
+  return <div data-testid="movie-list" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(300px,300px"}}>{/* Map through movie array  */}
       {
         data.map((el)=>{
           return <MovieCard key={el.id} {...el}/>
