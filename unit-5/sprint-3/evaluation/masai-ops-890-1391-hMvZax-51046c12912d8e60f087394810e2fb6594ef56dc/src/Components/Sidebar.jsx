@@ -1,80 +1,89 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+
 import styled from "styled-components";
 
 // Complete the logic do not remove any data-testid
 
 export const Sidebar = () => {
-  const [searchparams, setsearchparams] = useSearchParams();
-  const initialstate = searchparams.getAll("rating");
-  const [rating, setrating] = useState(initialstate || []);
-  const sortInitial = searchparams.get("order");
-  const [order, setorder] = useState(sortInitial || "");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialState = searchParams.getAll("rating");
+  const initialOrder = searchParams.get("order");
+
+  const [rating, setRating] = useState(initialState || []);
+  const [order, setOrder] = useState(initialOrder || "");
+
+  const handleChange = (e) => {
+    let newCategory = [...rating];
+    let value = e.target.value;
+
+    if (newCategory.includes(value)) {
+      newCategory.splice(newCategory.indexOf(value), 1);
+    } else {
+      newCategory.push(value);
+    }
+    setRating(newCategory);
+  };
+
+  const handleSort = (e) => {
+    setOrder(e.target.value);
+  };
 
   useEffect(() => {
     let params = {
       rating,
     };
+
     order && (params.order = order);
-    setsearchparams(params);
+
+    setSearchParams(params);
   }, [rating, order]);
 
-  const handlechange = (e) => {
-    let newrating = [...rating];
-    let value = e.target.value;
-    if (newrating.includes(value)) {
-      newrating.splice(newrating.indexOf(value), 1);
-    } else {
-      newrating.push(value);
-    }
-    setrating(newrating);
-    console.log(rating);
-  };
-
-  const handlesort = (e) => {
-    setorder(e.target.value);
-  };
   return (
     <DIV>
       <h3>Filter by Rating</h3>
       <div>
         <input
           data-testid="movie-filter-1"
-          type="checkbox"
           value="1"
+          onChange={handleChange}
+          type="checkbox"
           checked={rating.includes("1")}
-          onChange={handlechange}
         />
         <label>{"\u2605 \u2606 \u2606 \u2606 \u2606"}</label>
         <br />
         <input
           data-testid="movie-filter-2"
-          type="checkbox"
           value="2"
+          onChange={handleChange}
+          type="checkbox"
           checked={rating.includes("2")}
         />
         <label>{"\u2605 \u2605 \u2606 \u2606 \u2606"}</label>
         <br />
         <input
           data-testid="movie-filter-3"
-          type="checkbox"
           value="3"
+          onChange={handleChange}
+          type="checkbox"
           checked={rating.includes("3")}
         />
         <label>{"\u2605 \u2605 \u2605 \u2606 \u2606"}</label>
         <br />
         <input
           data-testid="movie-filter-4"
-          type="checkbox"
           value="4"
+          onChange={handleChange}
+          type="checkbox"
           checked={rating.includes("4")}
         />
         <label>{"\u2605 \u2605 \u2605 \u2605 \u2606"}</label>
         <br />
         <input
           data-testid="movie-filter-5"
-          type="checkbox"
           value="5"
+          onChange={handleChange}
+          type="checkbox"
           checked={rating.includes("5")}
         />
         <label>{"\u2605 \u2605 \u2605 \u2605 \u2605"}</label>
@@ -83,22 +92,22 @@ export const Sidebar = () => {
       <br />
       <br />
       <h3>Sort By Year</h3>
-      <div>
+      <div onChange={handleSort}>
         <input
           data-testid="movie-sort-asc"
           type="radio"
+          name="order"
           value={"asc"}
-          checked={order == "asc"}
-          onChange={handlesort}
+          defaultChecked={order === "asc"}
         />
         <label>Ascending</label>
         <br />
         <input
           data-testid="movie-sort-desc"
           type="radio"
+          name="order"
           value={"desc"}
-          checked={order == "desc"}
-          onChange={handlesort}
+          defaultChecked={order === "desc"}
         />
         <label>Descending</label>
       </div>
