@@ -16,7 +16,7 @@ export const MovieList = () => {
     params:{
       rating:searchparams.getAll("rating"),
       _sort:searchparams.get("order") && "order",
-      _year:searchparams.get("order")
+      _order:searchparams.get("order")
     }
   }
 
