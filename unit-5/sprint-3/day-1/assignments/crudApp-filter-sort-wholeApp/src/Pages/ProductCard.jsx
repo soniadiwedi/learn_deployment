@@ -4,7 +4,7 @@ import { Link, Navigate } from "react-router-dom"
 export default function ProductCard({brand,description,gender,id,thumbnail,price}) {
     const dispatch=useDispatch()
     const handleDelete=()=>{
-
+        dispatch(id)
     }
 
     return(

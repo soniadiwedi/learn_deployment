@@ -46,3 +46,11 @@ export const patchProduct=(id,obj)=>(dispatch)=>{
         dispatch(productFailure())
     })
 }
+
+/////////////////////////////////////////////////////////////////////
+
+// export const deleteProduct=(id)=>(dispatch)=>{
+//     axios.delete(`http://localhost:8080/products/${id}`).then((res)=>{
+//         dispatch()
+//     })
+// }
