@@ -1,0 +1,39 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "status": true
+    },
+    {
+      "id": 2,
+      "title": "json-server",
+      "status": false
+    },
+    {
+      "id": 3,
+      "title": "json-server",
+      "status": true
+    },
+    {
+      "todos": "fghjk",
+      "status": true,
+      "id": 4
+    },
+    {
+      "todos": "doooo",
+      "status": true,
+      "id": 5
+    },
+    {
+      "title": "dance",
+      "status": false,
+      "id": 6
+    },
+    {
+      "title": "sleep",
+      "status": true,
+      "id": 7
+    }
+  ]
+}
