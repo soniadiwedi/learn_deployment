@@ -5,7 +5,7 @@
       "image": "https://via.placeholder.com/350",
       "code": "fw14_003",
       "batch": "Web - 14",
-      "vote": 0,
+      "vote": 1,
       "id": 1
     },
     {
@@ -15,6 +15,14 @@
       "batch": "b",
       "vote": 0,
       "id": 2
+    },
+    {
+      "name": "sonia",
+      "image": "https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1662130119_6086441.jpg?format=webp&w=240&dpr=1.3",
+      "code": "",
+      "batch": "",
+      "vote": 6,
+      "id": 3
     }
   ]
 }

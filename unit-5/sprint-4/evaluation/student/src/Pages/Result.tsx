@@ -11,7 +11,7 @@ export default function Result() {
         <div>
            <div>
             {
-                result.length>2 && 
+                result.length>0 && 
                 <div>
                     <div>
                         <h1>Winner</h1>
@@ -26,6 +26,13 @@ export default function Result() {
                         <h4>Name:{result[1].name}</h4>
                         <p>Student code:{result[1].code}</p>
                         <p>Vote Counte:{result[1].vote}</p>
+                    </div>
+                    <div>
+                        <h1>3rd position</h1>
+                        <img src={result[2].image} alt={result[2].name} />
+                        <h4>Name:{result[2].name}</h4>
+                        <p>Student code:{result[2].code}</p>
+                        <p>Vote Counte:{result[2].vote}</p>
                     </div>
                 </div>
             }
