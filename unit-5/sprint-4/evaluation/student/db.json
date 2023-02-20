@@ -1,0 +1,20 @@
+{
+  "student": [
+    {
+      "name": "Ankush",
+      "image": "https://via.placeholder.com/350",
+      "code": "fw14_003",
+      "batch": "Web - 14",
+      "vote": 0,
+      "id": 1
+    },
+    {
+      "name": "https://via.placeholder.com/350",
+      "image": "https://via.placeholder.com/350",
+      "code": "cc",
+      "batch": "b",
+      "vote": 0,
+      "id": 2
+    }
+  ]
+}
