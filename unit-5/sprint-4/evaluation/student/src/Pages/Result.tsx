@@ -20,6 +20,13 @@ export default function Result() {
                         <p>Student code:{result[0].code}</p>
                         <p>Vote Counte:{result[0].vote}</p>
                     </div>
+                    <div>
+                        <h1>RunnerUp</h1>
+                        <img src={result[1].image} alt={result[1].name} />
+                        <h4>Name:{result[1].name}</h4>
+                        <p>Student code:{result[1].code}</p>
+                        <p>Vote Counte:{result[1].vote}</p>
+                    </div>
                 </div>
             }
            </div>
