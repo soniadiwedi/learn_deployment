@@ -13,6 +13,14 @@ export const addData=async(name:string,image:string,code:string,batch:string)=>{
 }
 
 
-export const voteApi=async(id:number,data:vo)=>{
-    return axios.patch(`http://localhost:8080/student/${id}`,data)
+export const resultapi=async()=>{
+    let res= axios.get(`http://localhost:8080/student/?_page=1&_limit=3&_sort=vote&_order=desc`)
+    return res
+}
+
+
+export const voteapi=async(id:number)=>{
+    let res=await axios.get(`http://localhost:8080/student/${id}`)
+    let newdata={vote:res.data.vote+1}
+    let data=await axios.patch(`http://localhost:8080/student/${id}`,newdata)
 }
