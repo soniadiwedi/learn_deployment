@@ -38,8 +38,8 @@ const server=http.createServer((req,res)=>{
 
   else if(req.url==="/count"){
     const countdata = fs.readFileSync("./data.json","utf-8");
-    countdata=JSON.parse(countdata).length
-    const logtext=`The inital user count is ${userCnt} at ${Date()}\n`
+    countdata=JSON.parse(countdata).length;
+    const writeFile=`The inital user count is ${userCnt} at ${Date()}\n`
     try{
       fs.writeFile("./logs.txt",writeFile,(err)=>{
         if(err){
@@ -77,21 +77,53 @@ const server=http.createServer((req,res)=>{
         const massege=`Updated user count after adding a new user is ${userCnt} at ${Date()}\n`;
         fs.appendFileSync("./logs.txt",massege,"utf-8");
         res.end("The data has been updated, go and check the data file")
-      }
+      }``
     })
   }
 
   else if(req.url==="/users"){
+    let user=fs.readFileSync("./data.json","utf-8");
+    user=JSON.parse(user);
 
+    let pro=user.localeCompare((el)=>{
+      return `<li>${el.first_name}</li>`;
+    })
+
+    pro=`${user.join("")}`;
+    res.setHeader("Content-type","text/html");
+    res.write("Following are the users present in database")
+    res.write(user)
+    res.end()
   }
 
   else if(req.url=="/address"){
-    let host=req.headers.host
-    console.log(host);
+    dns.lookup("masaischool.com",(err,address,family)=>{
+      if(err){
+        res.end(err)
+      }else{
+        const addr=`URL:  masaischool.com IP Address: ${address} and family is IPv${family}\n`;
+        fs.appendFile("./logs.txt",addr,"utf-8",(err)=>{
+          if(err){
+            res.end(err)
+          }else{
+            res.end("Logs File has been updated")
+          }
+        })
+      }
+    })
+    
   }
 
   else if(req.url=="/say"){
-
+      try{
+        const userdata=fs.readFileSync("./logs.txt","utf-8");
+        const cowdata=cowsay.say({
+          text:`${userdata}`,
+        })
+        res.end(cowdata)
+      }catch(err){
+        res.end(err)
+      }
   }
 
 })
@@ -99,3 +131,5 @@ const server=http.createServer((req,res)=>{
 // server.listen(4500,()=>{
 //   console.log("server is running");
 // })
+
+module.exports=server
