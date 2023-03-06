@@ -38,7 +38,7 @@ const server=http.createServer((req,res)=>{
 
   else if(req.url==="/count"){
     const countdata = fs.readFileSync("./data.json","utf-8");
-    countdata=JSON.parse(countdata).length;
+    userCnt=JSON.parse(countdata).length;
     const writeFile=`The inital user count is ${userCnt} at ${Date()}\n`
     try{
       fs.writeFile("./logs.txt",writeFile,(err)=>{
@@ -77,7 +77,7 @@ const server=http.createServer((req,res)=>{
         const massege=`Updated user count after adding a new user is ${userCnt} at ${Date()}\n`;
         fs.appendFileSync("./logs.txt",massege,"utf-8");
         res.end("The data has been updated, go and check the data file")
-      }``
+      }
     })
   }
 
@@ -85,14 +85,14 @@ const server=http.createServer((req,res)=>{
     let user=fs.readFileSync("./data.json","utf-8");
     user=JSON.parse(user);
 
-    let pro=user.localeCompare((el)=>{
+    let pro=user.map((el)=>{
       return `<li>${el.first_name}</li>`;
     })
 
-    pro=`${user.join("")}`;
+    pro=`${pro.join("")}`;
     res.setHeader("Content-type","text/html");
-    res.write("Following are the users present in database")
-    res.write(user)
+    res.write("Following are the users present in database:")
+    res.write(pro)
     res.end()
   }
 
