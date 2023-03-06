@@ -31,32 +31,52 @@ let userCnt = 0; //To count the number of users
 
 const server=http.createServer((req,res)=>{
   if(req.url==="/"){
-    // res.writeHead(200,{"Content-type":"text/html"})
-    // res.write("<h1>Home Page </h1>")
+    
     res.setHeader("Content-type","text/html")
-    res.end("<h1>Home Page </h1>")
+    res.end("<h1>HOME PAGE</h1>")
   }
 
   else if(req.url==="/count"){
-    const count =require("./data.json").length;
-    const logtext=`The inital user count is ${count} at ${new Date()}`
-    fs.appendFile("logs.txt",logtext,(err)=>{
-      if(err){
-        res.end(err);
-      }else{
-        res.setHeader("Content-type","text/plain");
-        res.end("The user count has been updated in the logs file")
-      }
-    })
+    const countdata = fs.readFileSync("./data.json","utf-8");
+    countdata=JSON.parse(countdata).length
+    const logtext=`The inital user count is ${userCnt} at ${Date()}\n`
+    try{
+      fs.writeFile("./logs.txt",writeFile,(err)=>{
+        if(err){
+          res.end(err)
+        }else{
+          res.end("The user count has been updated in the logs file")
+        }
+      })
+    }catch(err){
+      res.end(err)
+    }
+ 
   }
 
   else if(req.url=="/update"){
-    fs.readFile(path.join(_dirname,"data.json"),"utf-8",(err,data)=>{
+    let hosting=os.hostname();
+    let data=fs.readFileSync("./data.json","utf-8")
+    data=JSON.parse(data)
+    let id=data.length
+    let newuser={
+      id:id+1,
+      first_name:hosting,
+      last_name :hosting,
+      email:"soniadiwedi@gmail.com",
+      gender:"Female"
+
+    }
+    data.push(newuser)
+    data=JSON.stringify(data)
+    fs.writeFile("./data.json",data,(err)=>{
       if(err){
         res.end(err)
       }else{
-        res.write("The data has been updated, go and check the data file")
-        res.end(data)
+        userCnt+=1
+        const massege=`Updated user count after adding a new user is ${userCnt} at ${Date()}\n`;
+        fs.appendFileSync("./logs.txt",massege,"utf-8");
+        res.end("The data has been updated, go and check the data file")
       }
     })
   }
@@ -70,9 +90,9 @@ const server=http.createServer((req,res)=>{
     console.log(host);
   }
 
-  // else if(req.url=="/say"){
+  else if(req.url=="/say"){
 
-  // }
+  }
 
 })
 
