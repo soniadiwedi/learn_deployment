@@ -10,16 +10,16 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   const db = JSON.parse(fs.readFileSync("db.json"));
   const mainTodo = req.body;
-  newTodo.id = db.todos.length + 1;
+  mainTodo.id = db.todos.length + 1;
   db.todos.push(mainTodo);
   fs.writeFileSync("db.json", JSON.stringify(db));
-  res.json([newTodo]);
+  res.json([mainTodo]);
 });
 
 router.put("/:id", (req, res) => {
   const db = JSON.parse(fs.readFileSync("db.json"));
-  const todoIds = parseInt(req.params.id);
-  const todoToUpdate = db.todos.find((todo) => todo.id === todoIds);
+  const todoId = parseInt(req.params.id);
+  const todoToUpdate = db.todos.find((todo) => todo.id === todoId);
   if (!todoToUpdate) {
     res.status(400).send("Invalid argument");
     return;
