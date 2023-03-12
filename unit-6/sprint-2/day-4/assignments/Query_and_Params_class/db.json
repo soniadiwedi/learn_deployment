@@ -1,0 +1,16 @@
+{
+    "movies":[
+        {
+            "id":1,
+            "name":"dhmaal",
+            "director":"oyeohye"
+
+        },
+        {
+            "id":2,
+            "name":"chore le gye more",
+            "director":"shyabashe"
+
+        }
+    ]
+}
