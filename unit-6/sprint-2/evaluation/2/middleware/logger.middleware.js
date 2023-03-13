@@ -1,14 +1,13 @@
 
 // write the logic for logger middleware and export it.
 
-const morgan=require("morgan")
-const fs=require("fs")
-const path=require("path")
-var accesslog=fs.createWriteStream(path.join(__dirname,"logs.txt"),{
-    flags:"a",
-})
+const path = require("path");
+const fs = require("fs");
+const ps = path.join(__dirname, "../logs.txt");
+const logger = (req, res, next) => {
+  const data = `Method:${req.method}, Route:${req.url}, user-agent:${req.headers["user-agent"]}\n`;
+  fs.appendFileSync(ps, data);
+  next();
+};
 
-// app.use(morgan("combined",{stream:accesslog}))
-
-
-module.exports=accesslog
+module.exports = logger;
