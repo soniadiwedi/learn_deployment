@@ -8,9 +8,11 @@
 const express=require("express")
 const fs=require("fs")
 const path=require("path")
+const morgan=require("morgan")
 const stuRouter=require("./routes/student.route")
 const insRouter=require("./routes/instructor.route")
 const app=express()
+app.use(morgan("combined",{stream:accesslog}))
 
 app.use(express.json())
 app.use("/instructors",insRouter)
