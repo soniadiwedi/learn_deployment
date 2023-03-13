@@ -14,8 +14,9 @@ const stuRouter=require("./routes/student.route")
 const insRouter=require("./routes/instructor.route")
 const app=express()
 app.use(morgan("combined",{stream:accesslog}))
-app.use("/",logger)
+
 app.use(express.json())
+app.use("/",logger)
 app.use("/instructors",insRouter)
 app.use("/students",stuRouter)
 // app.listen(9020,()=>{
