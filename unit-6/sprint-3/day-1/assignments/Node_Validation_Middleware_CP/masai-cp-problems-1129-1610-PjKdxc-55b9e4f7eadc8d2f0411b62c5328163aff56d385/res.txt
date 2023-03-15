@@ -1,0 +1,12 @@
+ID is a number
+Name is a string
+Description is a string
+Genre is a string
+Rating is a number
+bad request.some data is incorrect.
+ID is a number
+Name is a string
+Description is a string
+Genre is a string
+Rating is a number
+bad request.some data is incorrect.
