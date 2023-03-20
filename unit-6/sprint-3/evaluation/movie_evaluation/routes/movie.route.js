@@ -1,8 +1,9 @@
 const express=require("express")
+const { fieldsAnalyzer } = require("../middlewares/fieldsAnalyzer")
 const { MovieModel } = require("../models/movie.model")
 const router =express.Router()
 
-router.post("/add",async(req,res)=>{
+router.post("/add",fieldsAnalyzer,async(req,res)=>{
     const payload=req.body
     try{
         const data=new MovieModel(payload)
@@ -32,12 +33,24 @@ router.get("/:id",async(req,res)=>{
 })
 
 
-router.patch("/update/:id",async(req,res)=>{
+router.patch("/update/:id",fieldsAnalyzer,async(req,res)=>{
     const {id}=req.params
     const data=req.body
     try{
         await MovieModel.findByIdAndUpdate({_id:id},data)
         res.status(200).send({"msg":"movie has been updated"})
+    }catch(err){
+        res.status(400).send({"msg":err.message})
+    }
+})
+
+
+router.delete("/delete/:id",async(req,res)=>{
+    const {id}=req.params
+    try{
+        await MovieModel.findByIdAndDelete({_id:id})
+        res.status(200).send({"msg":"movie has been deleted"})
+
     }catch(err){
         res.status(400).send({"msg":err.message})
     }
