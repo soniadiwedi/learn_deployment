@@ -1,5 +1,6 @@
 const express=require("express")
 const { fieldsAnalyzer } = require("../middlewares/fieldsAnalyzer")
+const { record } = require("../middlewares/record")
 const { MovieModel } = require("../models/movie.model")
 const router =express.Router()
 
@@ -33,7 +34,7 @@ router.get("/:id",async(req,res)=>{
 })
 
 
-router.patch("/update/:id",fieldsAnalyzer,async(req,res)=>{
+router.patch("/update/:id",fieldsAnalyzer,record,async(req,res)=>{
     const {id}=req.params
     const data=req.body
     try{
@@ -45,7 +46,7 @@ router.patch("/update/:id",fieldsAnalyzer,async(req,res)=>{
 })
 
 
-router.delete("/delete/:id",async(req,res)=>{
+router.delete("/delete/:id",record,async(req,res)=>{
     const {id}=req.params
     try{
         await MovieModel.findByIdAndDelete({_id:id})
