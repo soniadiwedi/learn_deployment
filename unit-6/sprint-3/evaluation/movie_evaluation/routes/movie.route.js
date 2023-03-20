@@ -16,11 +16,34 @@ router.post("/add",fieldsAnalyzer,async(req,res)=>{
 })
 
 
-// router.get("/",async(req,res)=>{
-//     try{
-//         const {min,max,year_of_release}
-//     }
-// })
+router.get("/",async(req,res)=>{
+    const {min,max,genre,year_of}=req.query;
+    const page=Number(req.query.page) ||1
+    const limit =Number(req.query.limit) ||2
+    const filter={}
+    if(min && max){
+        filter.rating={$gte:min,$lte:max};
+    }else if(max){
+        filter.rating={$gte:min};
+
+    }else if(max){
+        filter.rating={$lte:max}
+    }
+    if(genre){
+        filter.rating=genre
+    }
+    if(year_of){
+        filter.year_of_release={$gt:year_of}
+    }
+    try {
+       const mo=await MovieModel.find(filter).skip((page-1)*limit).limit(limit)
+       const no=await MovieModel.countDocuments(filter)
+       const totalpage=Math.ceil(no/limit)
+       res.status(200).send({mo,currentPage:page,totalpage})
+    }catch(err){
+        res.status(400).send({"msg":err.message})
+    }
+})
 
 
 router.get("/:id",async(req,res)=>{
