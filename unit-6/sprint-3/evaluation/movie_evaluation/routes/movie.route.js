@@ -30,7 +30,7 @@ router.get("/",async(req,res)=>{
         filter.rating={$lte:max}
     }
     if(genre){
-        filter.rating=genre
+        filter.genre=genre
     }
     if(year_of){
         filter.year_of_release={$gt:year_of}
